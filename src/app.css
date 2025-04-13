@@ -49,3 +49,16 @@
 		translate: var(--x, 0) var(--y, 0);
 	}
 }
+
+/* utilities */
+
+@utility overflow-fade {
+	--offset: 4rem;
+	mask: linear-gradient(
+		to right,
+		transparent,
+		black var(--offset),
+		black calc(100% - var(--offset)),
+		transparent
+	);
+}

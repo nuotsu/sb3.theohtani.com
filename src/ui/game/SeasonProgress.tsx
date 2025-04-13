@@ -52,11 +52,10 @@ export default function SeasonProgress({ data }: { data: MLB.Schedule }) {
 			<div
 				className={cn(
 					css.progress,
-					'relative flex flex-col justify-center border-r [grid-area:progress]',
+					'relative flex flex-col justify-center [grid-area:progress]',
 				)}
 				style={
 					{
-						'--max': MAX,
 						'--progress': `calc(100% * ${current / MAX})`,
 					} as React.CSSProperties
 				}

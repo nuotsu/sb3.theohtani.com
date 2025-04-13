@@ -6,15 +6,6 @@
 
 .progress {
 	--color: color-mix(in oklab, currentColor 25%, transparent);
-	--stroke: 1px;
-
-	background-image: repeating-linear-gradient(
-		to right,
-		var(--color),
-		var(--color) var(--stroke),
-		transparent var(--stroke),
-		transparent calc(100% / (var(--max) * var(--factor, 1 / 3)))
-	);
 
 	&::before {
 		content: '';
@@ -25,8 +16,8 @@
 			to right,
 			currentColor,
 			currentColor var(--progress),
-			transparent var(--progress),
-			transparent
+			var(--color) var(--progress),
+			var(--color)
 		);
 	}
 

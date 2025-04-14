@@ -1,3 +1,3 @@
-# The Clubhouse MLB Scorebug
+# MLB Scorebug
 
-> https://clubhouse.theohtani.com
+> https://sb3.theohtani.com

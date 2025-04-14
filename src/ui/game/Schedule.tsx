@@ -29,7 +29,7 @@ export default function Schedule() {
 		<section className="gap-ch grid">
 			<SeasonProgress data={data} />
 
-			<div className="gap-ch grid md:grid-cols-2">
+			<div className="gap-x-lh grid md:grid-cols-2">
 				{data.dates[0].games.map((game) => (
 					<Game game={game} key={game.gamePk} />
 				))}

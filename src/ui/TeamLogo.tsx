@@ -16,10 +16,17 @@ export default function TeamLogo({
 	return (
 		<img
 			src={teamLogoUrl(team, size)}
-			alt=""
+			alt={team.name}
+			title={team.name}
 			width={size}
 			height={size}
 			{...props}
 		/>
+	)
+}
+
+export function getInvert(team?: MLB.Team) {
+	return ['Astros', 'Giants', 'Marlins', 'Padres', 'Rays'].includes(
+		team?.clubName ?? '',
 	)
 }

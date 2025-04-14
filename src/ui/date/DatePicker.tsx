@@ -46,7 +46,12 @@ export default function DatePicker() {
 					value={date}
 					onChange={(e) => setDate(e.target.value)}
 				/>
-				<span>Calendar</span>
+				<span>
+					{new Date(date).toLocaleDateString('en-US', {
+						month: 'long',
+						year: 'numeric',
+					})}
+				</span>
 			</label>
 		</nav>
 	)

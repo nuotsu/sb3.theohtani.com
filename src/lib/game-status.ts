@@ -1,11 +1,12 @@
-export default function getGameStatus(game: MLB.ScheduleGame) {
-	if (!game) return {}
+export default function getGameStatus(status?: MLB.GameStatus) {
+	if (!status?.codedGameState) return {}
 
-	const { statusCode } = game.status
+	const { codedGameState } = status
 
 	return {
-		isPreview: ['S', 'W', 'P'].includes(statusCode),
-		isLive: ['I'].includes(statusCode),
-		isFinal: ['O', 'F'].includes(statusCode),
+		isPreview: ['S', 'W', 'P'].includes(codedGameState),
+		isLive: ['I'].includes(codedGameState),
+		isFinal: ['D', 'O', 'F'].includes(codedGameState),
+		isCancelled: ['C'].includes(codedGameState),
 	}
 }

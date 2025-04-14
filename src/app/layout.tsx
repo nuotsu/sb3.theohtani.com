@@ -1,6 +1,6 @@
-import type { Metadata } from 'next'
 import { Geist, Chakra_Petch } from 'next/font/google'
 import '@/app.css'
+import type { Metadata } from 'next'
 
 const fontSans = Geist({
 	subsets: ['latin'],
@@ -13,8 +13,9 @@ const fontCollegiate = Chakra_Petch({
 })
 
 export const metadata: Metadata = {
-	title: 'The Clubhouse — MLB Scorebug',
-	description: 'MLB Scorebug, in the style of The Clubhouse on Netflix.',
+	title: 'MLB Scorebug',
+	description: 'Live MLB Scorebug',
+	icons: 'https://fav.farm/⚾',
 }
 
 export default function RootLayout({

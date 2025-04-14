@@ -16,13 +16,13 @@ export default function DateButton({ day }: { day: string }) {
 
 	return (
 		<button
-			className={cn('snap-center', !isToday && 'mt-[1lh]')}
+			className={cn('snap-center', !isToday && 'mt-lh')}
 			onClick={() => setDate(day)}
 			data-selected={isSelected || undefined}
 		>
 			{isToday && <span>Today</span>}
 			<time
-				className={cn('grid border', day !== date && 'border-current/50')}
+				className={cn('grid border', day !== date && 'border-subdued')}
 				dateTime={day}
 			>
 				<span>{format(day, { weekday: 'long' })}</span>

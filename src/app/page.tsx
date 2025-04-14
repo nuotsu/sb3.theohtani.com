@@ -8,7 +8,7 @@ export default function Home() {
 		<main>
 			<Header />
 			<DatePicker />
-			{/* <Schedule /> */}
+			<Schedule />
 			<Standings />
 		</main>
 	)

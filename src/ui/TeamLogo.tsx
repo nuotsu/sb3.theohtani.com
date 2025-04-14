@@ -26,7 +26,11 @@ export default function TeamLogo({
 }
 
 export function getInvert(team?: MLB.Team) {
-	return ['Astros', 'Giants', 'Marlins', 'Padres', 'Rays'].includes(
-		team?.clubName ?? '',
-	)
+	return [
+		'Houston Astros',
+		'Miami Marlins',
+		'San Diego Padres',
+		'San Francisco Giants',
+		'Tampa Bay Rays',
+	].includes(team?.name ?? '')
 }

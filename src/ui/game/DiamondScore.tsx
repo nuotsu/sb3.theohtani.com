@@ -21,9 +21,9 @@ export default function DiamondScore({
 				className,
 			)}
 		>
-			<small className="col-[2/-1] line-clamp-1 text-center">
-				{game.description}
-			</small>
+			<p className="col-[2/-1] flex items-end justify-center text-center">
+				<small className="line-clamp-1">{game.description}</small>
+			</p>
 
 			<div className="relative z-1 col-[1/2] row-[2/-1] grid w-12 grid-rows-2 pr-1 pl-2">
 				<BaseRunners

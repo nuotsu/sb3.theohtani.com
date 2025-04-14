@@ -944,6 +944,25 @@ declare global {
 			runDifferential: number // int
 			winningPercentage: string // 0-1 float as a string; can be ".---" if unavailable
 		}
+
+		// divisions
+
+		interface Divisions extends RootResponse {
+			divisions: Division[]
+		}
+
+		interface Division extends IdentifiableObject {
+			name: string
+			season: string
+			nameShort: string
+			abbreviation: string
+			league: IdentifiableObject
+			sport: IdentifiableObject
+			hasWildcard: boolean
+			sortOrder: number
+			numPlayoffTeams: number
+			active: boolean
+		}
 	}
 }
 

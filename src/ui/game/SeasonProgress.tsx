@@ -39,7 +39,7 @@ export default function SeasonProgress({ data }: { data: MLB.Schedule }) {
 					<small className="text-[xx-small]/1 font-bold">Game</small>
 					<b
 						className={cn(
-							'anim-fade text-2xl/[1] [--x:-0.5ch]',
+							'anim-fade tabular-nums [--x:-0.5ch]',
 							date > today && css.future,
 						)}
 						key={current}
@@ -61,8 +61,8 @@ export default function SeasonProgress({ data }: { data: MLB.Schedule }) {
 				}
 			/>
 
-			<b className="text-lg/[1] [grid-area:first]">01</b>
-			<b className="text-lg/[1] [grid-area:last]">{MAX}</b>
+			<b className="leading-none tabular-nums [grid-area:first]">001</b>
+			<b className="leading-none tabular-nums [grid-area:last]">{MAX}</b>
 		</div>
 	)
 }

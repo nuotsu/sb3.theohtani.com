@@ -1,10 +1,6 @@
 import { create } from 'zustand'
 
-const TODAY = new Date().toLocaleDateString('en-CA', {
-	year: 'numeric',
-	month: '2-digit',
-	day: '2-digit',
-})
+const TODAY = new Date().toISOString().slice(0, 10)
 
 export const useStorage = create<{
 	date: string

@@ -66,7 +66,7 @@ declare global {
 				| 'Final: Tied'
 				| 'Cancelled'
 				| 'Completed Early'
-			statusCode: string // first char of detailedState
+			statusCode: 'S' | 'W' | 'P' | 'I' | 'O' | 'F' // first char of detailedState
 			codedGameState: GameStatus['statusCode'] // dupe of statusCode
 			startTimeTBD: boolean
 		}

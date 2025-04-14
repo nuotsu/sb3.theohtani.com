@@ -6,6 +6,7 @@
 
 	--color-bg: #000;
 	--color-fg: #fff;
+	--color-subdued: var(--color-neutral-700);
 	--color-accent: var(--color-red-500);
 
 	--spacing-ch: 1ch;
@@ -16,6 +17,10 @@
 	button {
 		cursor: pointer;
 	}
+
+	abbr {
+		text-decoration: none;
+	}
 }
 
 /* animations */
@@ -23,8 +28,8 @@
 @utility anim-fade {
 	--x: 0;
 	--y: 0;
-	animation: anim-fade-to var(--tw-duration, --default-transition-duration)
-		ease-in-out var(--delay, 0ms) forwards;
+	animation: anim-fade-to var(--tw-duration, var(--default-transition-duration))
+		ease-in-out forwards;
 }
 @utility anim-fade-to-l {
 	@apply anim-fade;
@@ -53,7 +58,7 @@
 /* utilities */
 
 @utility overflow-fade {
-	--offset: 4rem;
+	--offset: 2rem;
 	mask: linear-gradient(
 		to right,
 		transparent,

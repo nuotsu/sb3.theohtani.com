@@ -2,8 +2,8 @@
 
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/fetch'
-import { count } from '@/lib/utils'
 import SeasonProgress from './SeasonProgress'
+import Game from './Game'
 
 export default function Schedule() {
 	const { date } = useStorage()
@@ -26,24 +26,13 @@ export default function Schedule() {
 		)
 
 	return (
-		<section>
+		<section className="gap-ch grid">
 			<SeasonProgress data={data} />
 
-			<h2 className="text-center">
-				{data.totalGamesInProgress > 0 && (
-					<span>{data.totalGamesInProgress} of </span>
-				)}
-				{count(data.totalGames, 'game')}
-			</h2>
-
-			<div className="gap-ch grid">
-				{data.dates[0].games.map((game, i) => {
-					const { codedGameState } = game.status
-
-					if (codedGameState === 'P' || codedGameState === 'S') return null
-					if (codedGameState === 'I') return null
-					if (codedGameState === 'F') return null
-				})}
+			<div className="gap-ch grid md:grid-cols-2">
+				{data.dates[0].games.map((game) => (
+					<Game game={game} key={game.gamePk} />
+				))}
 			</div>
 		</section>
 	)

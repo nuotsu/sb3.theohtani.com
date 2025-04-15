@@ -1,49 +1,60 @@
-import getGameStatus from '@/lib/game-status'
-import { cn } from '@/lib/utils'
+'use client'
 
-export default function Details({
-	data,
-	className,
-}: {
-	data?: MLB.LiveData | null
-} & React.ComponentProps<'div'>) {
-	const { isPreview } = getGameStatus(data?.gameData.status)
-	const { venue, weather } = data?.gameData || {}
-	const hasWeather =
-		(weather?.condition && weather.condition !== 'Unknown') ||
-		weather?.temp ||
-		weather?.wind
+import { fetchPlayer } from '@/lib/fetch'
+import Headshot from '../Headshot'
 
-	const interlude = ['Middle', 'End'].includes(
-		data?.liveData.linescore.inningState ?? '',
-	)
+export default function Details({ data }: { data?: MLB.LiveData | null }) {
+	const { plays, linescore } = data?.liveData ?? {}
+	const currentPlay = plays?.currentPlay.result.description
+
+	const { battingOrder = 1, onDeck, inHole } = linescore?.offense ?? {}
+
+	const nextBattingOrder = battingOrder + 1 > 9 ? 1 : battingOrder + 1
 
 	return (
-		<div className={cn('', className)}>
-			<p
-				className={cn(
-					'gap-x-ch grid text-center text-xs/tight text-balance opacity-50',
-					hasWeather && 'grid-cols-3',
-					interlude && 'text-subdued',
+		<div className="h-[2lh]">
+			<div className="h-lh">
+				{currentPlay && (
+					// @ts-ignore
+					<marquee
+						className="overflow-fade"
+						title={currentPlay}
+						children={currentPlay}
+					/>
 				)}
-			>
-				<span
-					className={cn(isPreview && !hasWeather ? 'text-right' : 'text-left')}
-				>
-					{venue?.name}
-				</span>
+			</div>
 
-				{hasWeather && (
-					<>
-						<span>
-							{[weather.condition, `${weather.temp}°F`]
-								.filter(Boolean)
-								.join(' / ')}
-						</span>
-						<span className="text-right">{weather.wind}</span>
-					</>
-				)}
-			</p>
+			<ol
+				className="gap-ch flex snap-x snap-mandatory overflow-x-auto whitespace-nowrap"
+				start={nextBattingOrder}
+			>
+				<NextBatter label="On deck" player={onDeck} />
+				<NextBatter label="In hole" player={inHole} />
+			</ol>
 		</div>
+	)
+}
+
+function NextBatter({
+	label,
+	player,
+}: {
+	label: string
+	player?: MLB.BasicPlayerData
+}) {
+	const { data, isLoading } = fetchPlayer(player)
+
+	if (!player || isLoading) return null
+
+	return (
+		<li
+			className="inline-flex shrink-0 snap-start items-center gap-[.5ch]"
+			title={player?.fullName}
+			key={player.id}
+		>
+			<small className="opacity-50">{label}:</small>
+			<Headshot player={data} className="anim-fade-to-t h-lh" size={96} />
+			<span className="anim-fade">{data?.lastName}</span>
+		</li>
 	)
 }

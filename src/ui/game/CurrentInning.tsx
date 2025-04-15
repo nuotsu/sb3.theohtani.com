@@ -14,7 +14,10 @@ export default function CurrentInning({
 
 	return (
 		<div
-			className={cn('m-auto flex items-center gap-0.5 text-center', className)}
+			className={cn(
+				'drop-shadow-bg m-auto flex items-center gap-0.5 text-center drop-shadow-sm',
+				className,
+			)}
 		>
 			{['Top', 'Bottom'].includes(inningState) && (
 				<VscTriangleUp

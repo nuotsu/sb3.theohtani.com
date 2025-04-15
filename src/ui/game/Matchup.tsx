@@ -41,9 +41,11 @@ export default function Matchup({
 			<PlayerContainer player={pitcher} key={pitcher?.id}>
 				{pitchingStats && (
 					<>
-						<small className="line-clamp-1 opacity-50">
-							{pitchingStats.summary}
-						</small>
+						{pitchingStats.summary !== '0.0 IP, 0 ER, 0 K, 0 BB' && (
+							<small className="line-clamp-1 opacity-50">
+								{pitchingStats.summary}
+							</small>
+						)}
 						<span className="flex items-baseline tabular-nums">
 							<small>P:</small>
 							<Flip>{pitchingStats.numberOfPitches}</Flip>
@@ -83,11 +85,13 @@ function PlayerContainer({
 			className={cn(
 				'h-lh border-subdued/50 anim-fade relative flex gap-x-[.5ch] overflow-hidden border-b px-[.5ch]',
 			)}
-			title={player.fullName}
 		>
-			<Headshot className="anim-fade-to-t h-full" player={player} size={96} />
+			<Headshot player={player} className="anim-fade-to-t h-full" size={96} />
 
-			<div className="flex grow items-center gap-x-[inherit]">
+			<div
+				className="flex grow items-center gap-x-[inherit]"
+				title={player.fullName}
+			>
 				{player?.lastName}
 
 				<small className="opacity-50">#{player.primaryNumber}</small>

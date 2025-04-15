@@ -918,7 +918,7 @@ declare global {
 		interface StandingsTeamRecord extends LiveRecord {
 			team: NameableObject
 			season: string
-			streak: {
+			streak?: {
 				streakType: string
 				streakNumber: number // int
 				streakCode: string
@@ -945,14 +945,60 @@ declare global {
 			winningPercentage: string // 0-1 float as a string; can be ".---" if unavailable
 		}
 
+		// leagues
+
+		interface Leagues extends RootResponse {
+			leagues: League[]
+		}
+
+		interface League extends NameableObject {
+			abbreviation: string
+			nameShort: string
+			seasonState: string
+			hasWildCard: boolean
+			hasSplitSeason: boolean
+			numGames: number
+			hasPlayoffPoints: boolean
+			numTeams: number
+			numWildcardTeams: number
+			seasonDateInfo: {
+				seasonId: string
+				preSeasonStartDate: string
+				preSeasonEndDate: string
+				seasonStartDate: string
+				springStartDate: string
+				springEndDate: string
+				regularSeasonStartDate: string
+				lastDate1stHalf: string
+				allStarDate: string
+				firstDate2ndHalf: string
+				regularSeasonEndDate: string
+				postSeasonStartDate: string
+				postSeasonEndDate: string
+				seasonEndDate: string
+				offseasonStartDate: string
+				offSeasonEndDate: string
+				seasonLevelGamedayType: string
+				gameLevelGamedayType: string
+				qualifierPlateAppearances: number // float
+				qualifierOutsPitched: number
+			}
+			season: string
+			orgCode: string
+			conferencesInUse: boolean
+			divisionsInUse: boolean
+			sport: IdentifiableObject
+			sortOrder: number
+			active: boolean
+		}
+
 		// divisions
 
 		interface Divisions extends RootResponse {
 			divisions: Division[]
 		}
 
-		interface Division extends IdentifiableObject {
-			name: string
+		interface Division extends NameableObject {
 			season: string
 			nameShort: string
 			abbreviation: string

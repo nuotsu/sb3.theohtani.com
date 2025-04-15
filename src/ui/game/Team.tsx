@@ -1,5 +1,6 @@
 import getGameStatus from '@/lib/game-status'
-import TeamLogo, { getInvert, teamLogoUrl } from '@/ui/TeamLogo'
+import TeamColor from '@/ui/team/TeamColor'
+import TeamLogo from '@/ui/team/TeamLogo'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
@@ -21,21 +22,14 @@ export default function Team({
 		((inningState === 'Top' && side === 'away') ||
 			(inningState === 'Bottom' && side === 'home'))
 
-	const invert = getInvert(team)
-
 	return (
-		<div
+		<TeamColor
+			team={team}
 			className={cn(
 				'relative flex items-center gap-x-[.5ch] px-[.5ch]',
-				invert && 'text-bg',
 				isOffense && '',
 				isPreview ? 'row-span-2' : 'col-span-2',
 			)}
-			style={{
-				backgroundImage: `url(${teamLogoUrl(team)})`,
-				backgroundSize: '9999% 800%',
-				backgroundPosition: '50% 2%',
-			}}
 			key={team?.id}
 		>
 			<TeamLogo className="h-lh" team={team} draggable={false} />
@@ -59,6 +53,6 @@ export default function Team({
 					{data?.liveData.linescore.teams[side].runs}
 				</Flip>
 			)}
-		</div>
+		</TeamColor>
 	)
 }

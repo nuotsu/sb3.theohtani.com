@@ -3,7 +3,7 @@
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/fetch'
 import Division from './Division'
-import TeamRecords from './TeamRecords'
+import League from './League'
 import { cn } from '@/lib/utils'
 
 export default function Standings() {
@@ -38,13 +38,11 @@ export default function Standings() {
 					'md:grid-cols-3': data.records.length > 4,
 				})}
 			>
-				{data.records.map((record, i) =>
+				{data.records.map((record) =>
 					record.division ? (
 						<Division record={record} key={record.division.id} />
 					) : (
-						<div className="border" key={i}>
-							<TeamRecords teamRecords={record.teamRecords} />
-						</div>
+						<League record={record} key={record.league.id} />
 					),
 				)}
 			</div>

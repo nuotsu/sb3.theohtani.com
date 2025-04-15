@@ -1,8 +1,3 @@
-export function teamLogoUrl(team?: MLB.Team, size = 128) {
-	if (!team) return undefined
-	return `https://midfield.mlbstatic.com/v1/team/${team.id}/spots/${size}`
-}
-
 export default function TeamLogo({
 	team,
 	size,
@@ -23,6 +18,11 @@ export default function TeamLogo({
 			{...props}
 		/>
 	)
+}
+
+export function teamLogoUrl(team?: MLB.Team, size = 128) {
+	if (!team) return undefined
+	return `https://midfield.mlbstatic.com/v1/team/${team.id}/spots/${size}`
 }
 
 export function getInvert(team?: MLB.Team) {

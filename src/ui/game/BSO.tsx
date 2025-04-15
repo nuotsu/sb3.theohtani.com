@@ -4,22 +4,35 @@ export default function BSO({
 	data,
 	className,
 }: { data?: MLB.LiveData | null } & React.ComponentProps<'div'>) {
-	const { balls, strikes, outs } = data?.liveData.linescore ?? {}
+	const { balls, strikes, outs, inningState } = data?.liveData.linescore ?? {}
+	const interlude = ['Middle', 'End'].includes(inningState ?? '')
 
 	return (
 		<div className={cn('leading-none', className)}>
-			<dl className="grid grid-cols-[auto_1fr] items-center gap-0.5 text-sm/[1] [&_dt]:text-center">
+			<dl
+				className={cn(
+					'grid grid-cols-[auto_1fr] items-center gap-0.5 transition-colors *:text-[x-small] [&_dt]:text-center',
+					interlude && 'text-subdued',
+				)}
+			>
 				<dt>B</dt>
 				<dd>
-					<Indicators className="text-green-500" current={balls} max={3} />
+					<Indicators
+						className="text-green-500"
+						current={interlude ? 0 : balls}
+						max={3}
+					/>
 				</dd>
 				<dt>S</dt>
 				<dd>
-					<Indicators className="text-yellow-300" current={strikes ?? 0} />
+					<Indicators
+						className="text-yellow-300"
+						current={interlude ? 0 : strikes}
+					/>
 				</dd>
 				<dt>O</dt>
 				<dd>
-					<Indicators className="text-red-500" current={outs ?? 0} />
+					<Indicators className="text-red-500" current={interlude ? 0 : outs} />
 				</dd>
 			</dl>
 		</div>
@@ -36,10 +49,9 @@ function Indicators({
 			{Array.from({ length: max }).map((_, i) => (
 				<div
 					className={cn(
-						'size-2 rounded-full transition-colors',
-						current > i
-							? 'bg-current'
-							: 'from-subdued bg-linear-to-t via-transparent',
+						'relative size-2 overflow-hidden rounded-full transition-colors',
+						'before:from-subdued before:via-subdued/30 before:to-subdued/30 before:absolute before:inset-0 before:-z-1 before:bg-linear-to-t',
+						current > i && 'bg-current',
 					)}
 					key={i}
 				/>

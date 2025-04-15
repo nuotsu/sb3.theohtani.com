@@ -5,7 +5,7 @@
 }
 
 .progress {
-	--color: color-mix(in oklab, currentColor 25%, transparent);
+	--color: var(--color-subdued);
 
 	&::before {
 		content: '';

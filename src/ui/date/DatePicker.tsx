@@ -15,10 +15,10 @@ export default function DatePicker() {
 		return new Date(newDate.getTime() + delta).toISOString().slice(0, 10)
 	}
 
-	const days = [-1, 0, 1, 2, 3].map(addDay)
+	const days = [-2, -1, 0, 1, 2].map(addDay)
 
 	return (
-		<nav className="relative grid">
+		<nav className="relative">
 			{!days.includes(today) && (
 				<button
 					className={cn('absolute top-0 z-1', {
@@ -33,7 +33,7 @@ export default function DatePicker() {
 				</button>
 			)}
 
-			<div className="gap-ch overflow-fade grid snap-x snap-mandatory auto-cols-[minmax(10em,1fr)] [grid-auto-flow:column] items-end overflow-x-auto">
+			<div className="lg:gap-ch grid grid-cols-5 gap-[.5ch]">
 				{days.map((day) => (
 					<DateButton day={day} key={day} />
 				))}

@@ -1,4 +1,5 @@
 import getGameStatus from '@/lib/game-status'
+import { cn } from '@/lib/utils'
 
 export default function Scoreboard({ data }: { data?: MLB.LiveData | null }) {
 	const { innings = [] } = data?.liveData.linescore ?? {}
@@ -33,18 +34,41 @@ function Row({
 	side,
 }: {
 	data?: MLB.LiveData | null
-	side: 'home' | 'away'
+	side: 'away' | 'home'
 }) {
-	const { innings = [], teams } = data?.liveData.linescore ?? {}
-	const { isFinal } = getGameStatus(data?.gameData.status)
+	const {
+		innings = [],
+		inningState,
+		currentInning,
+		teams,
+	} = data?.liveData.linescore ?? {}
+	const { isFinal, isLive } = getGameStatus(data?.gameData.status)
+	const isOffense =
+		isLive &&
+		((inningState === 'Top' && side === 'away') ||
+			(inningState === 'Bottom' && side === 'home'))
 
 	return (
 		<tr>
 			{Array.from({ length: Math.max(innings.length, 9) }).map((_, i) => {
 				const { runs } = innings[i]?.[side] ?? {}
 				const calledEarly = isFinal && side === 'home' && i >= 8 && isNaN(runs)
+				const current = currentInning
+					? currentInning - 1 === i && isOffense
+					: false
 
-				return <td key={i}>{calledEarly ? 'x' : runs}</td>
+				return (
+					<td
+						className={cn(
+							'transition-colors',
+							runs > 0 && 'font-bold',
+							current && 'bg-subdued/50',
+						)}
+						key={i}
+					>
+						{calledEarly ? 'X' : runs}
+					</td>
+				)
 			})}
 			<td className="border-l font-bold">{teams?.[side].runs}</td>
 			<td>{teams?.[side].hits}</td>

@@ -21,8 +21,6 @@ export default function Standings() {
 			</section>
 		)
 
-	console.log(data)
-
 	if (!data || data.records.length === 0)
 		return (
 			<section>

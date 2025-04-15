@@ -9,14 +9,22 @@ export default function Details({
 } & React.ComponentProps<'div'>) {
 	const { isPreview } = getGameStatus(data?.gameData.status)
 	const { venue, weather } = data?.gameData || {}
-	const hasWeather = weather?.condition || weather?.temp || weather?.wind
+	const hasWeather =
+		(weather?.condition && weather.condition !== 'Unknown') ||
+		weather?.temp ||
+		weather?.wind
+
+	const interlude = ['Middle', 'End'].includes(
+		data?.liveData.linescore.inningState ?? '',
+	)
 
 	return (
 		<div className={cn('', className)}>
 			<p
 				className={cn(
-					'gap-x-ch grid text-center text-xs/tight text-balance',
+					'gap-x-ch grid text-center text-xs/tight text-balance opacity-50',
 					hasWeather && 'grid-cols-3',
+					interlude && 'text-subdued',
 				)}
 			>
 				<span
@@ -28,7 +36,9 @@ export default function Details({
 				{hasWeather && (
 					<>
 						<span>
-							{weather.condition} / {weather.temp}°F
+							{[weather.condition, `${weather.temp}°F`]
+								.filter(Boolean)
+								.join(' / ')}
 						</span>
 						<span className="text-right">{weather.wind}</span>
 					</>

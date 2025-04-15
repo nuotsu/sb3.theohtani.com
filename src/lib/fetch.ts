@@ -19,3 +19,13 @@ export function fetchMLBLive<T = any>(
 		...options,
 	})
 }
+
+export function fetchPlayer(player?: MLB.BasicPlayerData) {
+	if (!player) return { data: null, isLoading: false }
+
+	const { data, isLoading } = fetchMLBLive<{ people: MLB.Player[] }>(
+		player.link,
+	)
+
+	return { data: data?.people[0], isLoading }
+}

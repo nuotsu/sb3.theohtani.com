@@ -1,4 +1,4 @@
-import { VscTriangleDown, VscTriangleUp } from 'react-icons/vsc'
+import { VscTriangleUp } from 'react-icons/vsc'
 import { cn } from '@/lib/utils'
 
 export default function CurrentInning({
@@ -15,19 +15,23 @@ export default function CurrentInning({
 		<div
 			className={cn('m-auto flex items-center gap-0.5 text-center', className)}
 		>
-			{inningState === 'Top' && <VscTriangleUp className="text-[x-small]" />}
-			{inningState === 'Bottom' && (
-				<VscTriangleDown className="text-[x-small]" />
+			{['Top', 'Bottom'].includes(inningState) && (
+				<VscTriangleUp
+					className={cn(
+						'-mr-0.5 text-xs',
+						inningState === 'Bottom' && 'rotate-180',
+					)}
+				/>
 			)}
 
 			{inningState === 'Middle' && (
-				<span className="text-[xx-small] uppercase">Mid</span>
+				<b className="text-[xx-small] uppercase">Mid</b>
 			)}
 			{inningState === 'End' && (
-				<small className="text-[xx-small] uppercase">End</small>
+				<b className="text-[xx-small] uppercase">End</b>
 			)}
 
-			{currentInning}
+			<b>{currentInning}</b>
 		</div>
 	)
 }

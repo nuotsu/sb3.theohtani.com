@@ -27,8 +27,7 @@ export default function Team({
 			className={cn(
 				'relative flex items-center gap-x-[.5ch] px-[.5ch]',
 				invert && 'text-bg',
-				isOffense &&
-					'after:pointer-events-none after:absolute after:inset-0 after:ring after:ring-current/20 after:ring-inset',
+				isOffense && '',
 				isPreview ? 'row-span-2' : 'col-span-2',
 			)}
 			style={{
@@ -48,15 +47,17 @@ export default function Team({
 				</abbr>
 
 				{team?.record && (
-					<small className="tabular-nums opacity-50">
+					<small className="opacity-50">
 						{team?.record.wins}-{team?.record.losses}
 					</small>
 				)}
 			</div>
 
-			<strong className="text-right tabular-nums">
-				{data?.liveData.linescore.teams[side].runs}
-			</strong>
+			{!isPreview && (
+				<strong className="text-right tabular-nums">
+					{data?.liveData.linescore.teams[side].runs}
+				</strong>
+			)}
 		</div>
 	)
 }

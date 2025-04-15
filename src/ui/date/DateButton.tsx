@@ -2,7 +2,8 @@
 
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/fetch'
-import { cn, count } from '@/lib/utils'
+import { VscLoading } from 'react-icons/vsc'
+import { cn } from '@/lib/utils'
 
 export default function DateButton({ day }: { day: string }) {
 	const { date, setDate, today } = useStorage()
@@ -14,36 +15,56 @@ export default function DateButton({ day }: { day: string }) {
 	const isToday = compareDate(day, today)
 	const isSelected = compareDate(day, date)
 
+	const dayOfWeek = format(day, { weekday: 'short' })
+
 	return (
 		<button
-			className={cn('snap-center', !isToday && 'mt-lh')}
+			className={cn('flex flex-col items-center', !isToday && 'mt-lh')}
 			onClick={() => setDate(day)}
 			data-selected={isSelected || undefined}
 		>
 			{isToday && <span>Today</span>}
+
 			<time
-				className={cn('grid border', day !== date && 'border-subdued')}
+				className={cn(
+					'gap-ch sm:py-ch grid w-full grow border py-[.5ch] leading-none',
+					day !== date && 'border-subdued',
+				)}
 				dateTime={day}
 			>
-				<span>{format(day, { weekday: 'long' })}</span>
+				<small
+					className={cn(
+						'uppercase',
+						['Sat', 'Sun'].includes(dayOfWeek) && 'text-red-300',
+					)}
+				>
+					{dayOfWeek}
+				</small>
+
 				<strong>{format(day, { month: 'short', day: 'numeric' })}</strong>
 
-				<span className={cn(!data?.totalGames && 'capitalize')}>
-					{isLoading ? (
-						'Loading...'
-					) : !data ? (
-						'No games'
-					) : (
-						<>
-							{data.totalGamesInProgress > 0 && (
-								<span>
-									<b>{data.totalGamesInProgress}</b> of{' '}
-								</span>
-							)}
-							{count(data.totalGames, 'game')}
-						</>
-					)}
-				</span>
+				{isLoading ? (
+					<small>
+						<VscLoading className="h-lh mx-auto my-[.5ch] animate-spin" />
+					</small>
+				) : !data || data.totalGames === 0 ? (
+					<>
+						<small className="my-[.5ch] line-clamp-1 max-sm:hidden">
+							No games
+						</small>
+						<small className="my-[.5ch] sm:hidden">-</small>
+					</>
+				) : (
+					<small className="*:px-ch bg-subdued mx-auto flex items-center rounded-full *:py-[.5ch]">
+						{data.totalGamesInProgress > 0 && (
+							<b className="bg-bg ring-subdued -mr-[.5ch] flex items-center gap-x-1 rounded-full pl-[0.75ch]! ring ring-inset">
+								<span className="animate-pulse text-green-400">•</span>{' '}
+								<span>{data.totalGamesInProgress}</span>
+							</b>
+						)}
+						<span className="inline-block">{data.totalGames}</span>
+					</small>
+				)}
 			</time>
 		</button>
 	)

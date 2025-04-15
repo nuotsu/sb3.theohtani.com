@@ -12,28 +12,42 @@ export default function BaseRunners({
 }: {
 	data?: MLB.LiveData | null
 } & React.ComponentProps<'div'>) {
-	const { offense = {} } = data?.liveData.linescore ?? {}
+	const { offense = {}, inningState } = data?.liveData.linescore ?? {}
 
 	const runners = Object.keys(offense)
 		.map((key) => runnerKeys[key])
 		.filter(Number.isInteger)
 
+	const interlude = ['Middle', 'End'].includes(inningState ?? '')
+
 	return (
 		<div
 			className={cn(
-				'ring-bg grid rotate-45 grid-cols-2 gap-1 ring-4',
+				'ring-bg grid rotate-45 grid-cols-2 gap-1 ring-4 transition-colors',
+				interlude && 'text-subdued',
 				className,
 			)}
 		>
-			{[1, 0, 2].map((i) => (
-				<div
-					className={cn(
-						'base bg-bg size-4 border transition-colors',
-						runners.includes(i) && 'bg-fg',
-					)}
-					key={i}
-				/>
-			))}
+			{Array.from({ length: 3 }).map((_, i) => {
+				const base = Object.keys(offense).find((key) => runnerKeys[key] === i)
+				const runner = offense[base as keyof typeof offense] as
+					| MLB.BasicPlayerData
+					| undefined
+
+				return (
+					<span
+						className={cn(
+							'base bg-bg size-4 border transition-colors',
+							i === 0 && 'order-2',
+							i === 1 && 'order-1',
+							i === 2 && 'order-3',
+							runners.includes(i) && 'bg-fg',
+						)}
+						title={`${runner?.fullName} on ${base}`}
+						key={i}
+					/>
+				)
+			})}
 		</div>
 	)
 }

@@ -22,6 +22,10 @@
 	abbr {
 		text-decoration: none;
 	}
+
+	img {
+		width: auto;
+	}
 }
 
 /* animations */

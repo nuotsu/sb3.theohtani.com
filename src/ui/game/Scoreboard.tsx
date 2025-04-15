@@ -1,4 +1,5 @@
 import getGameStatus from '@/lib/game-status'
+import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function Scoreboard({ data }: { data?: MLB.LiveData | null }) {
@@ -66,14 +67,22 @@ function Row({
 						)}
 						key={i}
 					>
-						{calledEarly ? 'X' : runs}
+						<Flip disable={!current}>{calledEarly ? 'X' : runs}</Flip>
 					</td>
 				)
 			})}
-			<td className="border-l font-bold">{teams?.[side].runs}</td>
-			<td>{teams?.[side].hits}</td>
-			<td>{teams?.[side].errors}</td>
-			<td>{teams?.[side].leftOnBase}</td>
+			<td className="border-l font-bold">
+				<Flip disable={!isLive}>{teams?.[side].runs}</Flip>
+			</td>
+			<td>
+				<Flip disable={!isLive}>{teams?.[side].hits}</Flip>
+			</td>
+			<td>
+				<Flip disable={!isLive}>{teams?.[side].errors}</Flip>
+			</td>
+			<td>
+				<Flip disable={!isLive}>{teams?.[side].leftOnBase}</Flip>
+			</td>
 		</tr>
 	)
 }

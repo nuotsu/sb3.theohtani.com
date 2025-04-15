@@ -1,4 +1,5 @@
 import { fetchPlayer } from '@/lib/fetch'
+import Flip from '@/ui/Flip'
 import Headshot from '@/ui/Headshot'
 import { cn } from '@/lib/utils'
 
@@ -32,32 +33,37 @@ export default function Matchup({
 	return (
 		<div
 			className={cn(
-				'relative grow transition-colors',
+				'relative h-[2lh] grow transition-colors',
 				interlude && 'text-subdued [&_img]:opacity-20',
 				className,
 			)}
 		>
 			<PlayerContainer player={pitcher} key={pitcher?.id}>
 				{pitchingStats && (
-					<div className="flex items-center gap-x-[inherit]">
+					<>
 						<small className="line-clamp-1 opacity-50">
 							{pitchingStats.summary}
 						</small>
-						P:{pitchingStats.numberOfPitches}
-					</div>
+						<span className="flex items-baseline tabular-nums">
+							<small>P:</small>
+							<Flip>{pitchingStats.numberOfPitches}</Flip>
+						</span>
+					</>
 				)}
 			</PlayerContainer>
 
 			<PlayerContainer player={batter} key={batter?.id}>
 				{battingStats && (
-					<div className="flex items-center gap-[inherit]">
+					<>
 						<small className="line-clamp-1 opacity-50">
 							{battingStats.summary.split(' | ')[1]}
 						</small>
 						<span>
-							{battingStats.hits} <small>for</small> {battingStats.atBats}
+							{battingStats.hits}
+							<small> for </small>
+							{battingStats.atBats}
 						</span>
-					</div>
+					</>
 				)}
 			</PlayerContainer>
 		</div>
@@ -74,10 +80,12 @@ function PlayerContainer({
 
 	return (
 		<div
-			className={cn('h-lh anim-fade-to-r relative flex gap-x-[.5ch] px-[.5ch]')}
+			className={cn(
+				'h-lh border-subdued/50 anim-fade relative flex gap-x-[.5ch] overflow-hidden border-b px-[.5ch]',
+			)}
 			title={player.fullName}
 		>
-			<Headshot className="size-lh" player={player} size={96} />
+			<Headshot className="anim-fade-to-t h-full" player={player} size={96} />
 
 			<div className="flex grow items-center gap-x-[inherit]">
 				{player?.lastName}
@@ -85,7 +93,7 @@ function PlayerContainer({
 				<small className="opacity-50">#{player.primaryNumber}</small>
 			</div>
 
-			{children}
+			<div className="flex items-center gap-x-[inherit]">{children}</div>
 		</div>
 	)
 }

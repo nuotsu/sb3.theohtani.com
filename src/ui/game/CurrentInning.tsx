@@ -1,5 +1,6 @@
 import { VscTriangleUp } from 'react-icons/vsc'
 import { cn } from '@/lib/utils'
+import Flip from '@/ui/Flip'
 
 export default function CurrentInning({
 	data,
@@ -18,20 +19,20 @@ export default function CurrentInning({
 			{['Top', 'Bottom'].includes(inningState) && (
 				<VscTriangleUp
 					className={cn(
-						'-mr-0.5 text-xs',
+						'anim-fade -mr-0.5 text-xs',
 						inningState === 'Bottom' && 'rotate-180',
 					)}
 				/>
 			)}
 
 			{inningState === 'Middle' && (
-				<b className="text-[xx-small] uppercase">Mid</b>
+				<b className="anim-fade text-[xx-small] uppercase">Mid</b>
 			)}
 			{inningState === 'End' && (
-				<b className="text-[xx-small] uppercase">End</b>
+				<b className="anim-fade text-[xx-small] uppercase">End</b>
 			)}
 
-			<b>{currentInning}</b>
+			<Flip className="font-bold">{currentInning}</Flip>
 		</div>
 	)
 }

@@ -1,5 +1,6 @@
 import getGameStatus from '@/lib/game-status'
 import TeamLogo, { getInvert, teamLogoUrl } from '@/ui/TeamLogo'
+import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function Team({
@@ -54,9 +55,9 @@ export default function Team({
 			</div>
 
 			{!isPreview && (
-				<strong className="text-right tabular-nums">
+				<Flip className="text-right font-black tabular-nums" disable={!isLive}>
 					{data?.liveData.linescore.teams[side].runs}
-				</strong>
+				</Flip>
 			)}
 		</div>
 	)

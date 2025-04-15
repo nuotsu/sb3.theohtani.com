@@ -3,6 +3,7 @@
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/fetch'
 import { VscLoading } from 'react-icons/vsc'
+import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function DateButton({ day }: { day: string }) {
@@ -59,7 +60,7 @@ export default function DateButton({ day }: { day: string }) {
 						{data.totalGamesInProgress > 0 && (
 							<b className="bg-bg ring-subdued -mr-[.5ch] flex items-center gap-x-1 rounded-full pl-[0.75ch]! ring ring-inset">
 								<span className="animate-pulse text-green-400">•</span>{' '}
-								<span>{data.totalGamesInProgress}</span>
+								<Flip>{data.totalGamesInProgress}</Flip>
 							</b>
 						)}
 						<span className="inline-block">{data.totalGames}</span>

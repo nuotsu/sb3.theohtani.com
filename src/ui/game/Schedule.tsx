@@ -11,22 +11,13 @@ export default function Schedule() {
 		`/api/v1/schedule?sportId=1&startDate=${date}&endDate=${date}`,
 	)
 
-	if (isLoading)
-		return (
-			<section className="text-center">
-				<h2>Loading games...</h2>
-			</section>
-		)
+	if (isLoading) return <h2 className="text-center">Loading games...</h2>
 
 	if (!data || data.totalGames === 0)
-		return (
-			<section className="text-center">
-				<h2>No games</h2>
-			</section>
-		)
+		return <h2 className="text-center">No games</h2>
 
 	return (
-		<section className="gap-ch grid">
+		<>
 			<SeasonProgress data={data} />
 
 			<div className="gap-lh grid md:grid-cols-2">
@@ -34,6 +25,6 @@ export default function Schedule() {
 					<Game game={game} key={game.gamePk} />
 				))}
 			</div>
-		</section>
+		</>
 	)
 }

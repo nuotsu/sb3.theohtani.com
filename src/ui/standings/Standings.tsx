@@ -29,8 +29,8 @@ export default function Standings() {
 		)
 
 	return (
-		<section>
-			<h2>Standings</h2>
+		<section id="standings" className="mt-lh">
+			<h2 className="font-dot text-center">Standings</h2>
 
 			<div
 				className={cn('gap-ch grid', {

@@ -1,13 +1,13 @@
-import { Geist, Chakra_Petch, Doto } from 'next/font/google'
+import { Geist, Doto } from 'next/font/google'
 import '@/app.css'
 import type { Metadata } from 'next'
 
-const fontSans = Geist({
+const f1 = Geist({
 	subsets: ['latin'],
 	weight: ['400', '900'],
 })
 
-const fontDot = Doto({
+const f2 = Doto({
 	subsets: ['latin'],
 })
 
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className="bg-bg text-fg cursor-crosshair pb-[env(safe-area-inset-bottom)] antialiased">
+			<body className="bg-bg text-fg cursor-crosshair antialiased">
 				{children}
 			</body>
 		</html>

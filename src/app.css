@@ -14,6 +14,10 @@
 }
 
 @layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
 	label,
 	button {
 		cursor: pointer;
@@ -86,6 +90,15 @@
 		black calc(100% - var(--offset)),
 		transparent
 	);
+}
+
+@utility blur-gradient-to-t {
+	@apply from-bg bg-linear-to-t;
+
+	&::before {
+		content: '';
+		@apply pointer-events-none absolute inset-0 -top-4 -z-1 mask-t-from-25% mask-t-to-100% backdrop-blur;
+	}
 }
 
 @utility no-scrollbar {

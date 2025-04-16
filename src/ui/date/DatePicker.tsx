@@ -17,7 +17,7 @@ export default function DatePicker() {
 	const days = [-2, -1, 0, 1, 2].map(addDay)
 
 	return (
-		<nav className="relative">
+		<nav className="relative grid">
 			{!days.includes(today) && (
 				<button
 					className={cn('absolute top-0 z-1', {
@@ -38,7 +38,7 @@ export default function DatePicker() {
 				))}
 			</div>
 
-			<label className="ml-auto grid *:col-span-full *:row-span-full *:ml-auto">
+			<label className="ml-auto inline-grid *:col-span-full *:row-span-full *:ml-auto">
 				<input
 					className="opacity-0"
 					type="date"

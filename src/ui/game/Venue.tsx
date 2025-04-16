@@ -28,7 +28,10 @@ export default function Venue({
 				)}
 			>
 				<span
-					className={cn(isPreview && !hasWeather ? 'text-right' : 'text-left')}
+					className={cn(
+						'line-clamp-2',
+						isPreview && !hasWeather ? 'text-right' : 'text-left',
+					)}
 				>
 					{venue?.name}
 				</span>

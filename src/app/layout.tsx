@@ -1,4 +1,4 @@
-import { Geist, Chakra_Petch } from 'next/font/google'
+import { Geist, Chakra_Petch, Doto } from 'next/font/google'
 import '@/app.css'
 import type { Metadata } from 'next'
 
@@ -7,9 +7,8 @@ const fontSans = Geist({
 	weight: ['400', '900'],
 })
 
-const fontCollegiate = Chakra_Petch({
+const fontDot = Doto({
 	subsets: ['latin'],
-	weight: ['400', '700'],
 })
 
 export const metadata: Metadata = {

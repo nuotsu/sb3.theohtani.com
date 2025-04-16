@@ -8,7 +8,6 @@ export default function DatePicker() {
 	const { date, setDate, today } = useStorage()
 
 	function addDay(days: number) {
-		// const hours = new Date(date).getHours().toString().padStart(2, '0')
 		const newDate = new Date(date + `T00:00:00`)
 		const delta = days * 24 * 60 * 60 * 1000
 

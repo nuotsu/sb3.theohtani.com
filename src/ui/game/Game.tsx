@@ -5,8 +5,8 @@ import { fetchMLBLive } from '@/lib/fetch'
 import DiamondScore from './DiamondScore'
 import Scoreboard from './Scoreboard'
 import BSO from './BSO'
-import Matchup from './Matchup'
-import Details from './Details'
+import Matchup from './matchup/Matchup'
+import Details from './Details/Details'
 import Venue from './Venue'
 import { cn } from '@/lib/utils'
 
@@ -47,14 +47,14 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 			{isLive && (
 				<hr
 					data-active
-					className="mt-lh border-subdued -order-2 col-span-full border-dashed data-[active]:not-first-of-type:hidden"
+					className="border-subdued -order-2 col-span-full border-dashed data-[active]:not-first-of-type:hidden"
 				/>
 			)}
 
 			{isPreview && (
 				<hr
 					data-scheduled
-					className="mt-lh border-subdued -order-1 col-span-full hidden border-dashed data-[scheduled]:not-last-of-type:hidden [[data-active]~&]:block"
+					className="border-subdued -order-1 col-span-full hidden border-dashed data-[scheduled]:not-last-of-type:hidden [[data-active]~&]:block"
 				/>
 			)}
 		</>

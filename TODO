@@ -1,5 +1,25 @@
 # TODO
 
+## fixes
+
+## backlog
+
+- standings
+  - sticky table headers (ref: official MLB app)
+- win probability
+- HR/K/backward-K alerts
+- spoiler prevention
 - loading
 - gameData.flags
 - gameData.probablePitchers
+- series X of Y
+- pitcher: next start
+- pitch sequences of an at-bat
+- player search; API endpoint?
+- YouTube game highlights API + keys
+
+## Logo
+
+- bases?
+- BSO?
+- favorited team?

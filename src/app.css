@@ -2,7 +2,7 @@
 
 @theme {
 	--font-sans: 'Geist', sans-serif;
-	--font-collegiate: 'Chakra Petch', sans-serif;
+	--font-dot: 'Doto', sans-serif;
 
 	--color-bg: #000;
 	--color-fg: #fff;
@@ -82,4 +82,13 @@
 		black calc(100% - var(--offset)),
 		transparent
 	);
+}
+
+@utility no-scrollbar {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }

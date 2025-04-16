@@ -29,7 +29,7 @@ export default function Standings() {
 		)
 
 	return (
-		<section id="standings" className="mt-lh">
+		<section id="standings" className="my-lh">
 			<h2 className="font-dot text-center">Standings</h2>
 
 			<div

@@ -4,12 +4,11 @@
 
 ## backlog
 
-- standings
-  - sticky table headers (ref: official MLB app)
-- win probability
-- HR/K/backward-K alerts
+- highlight -> star/favorite teams
 - spoiler prevention
 - loading
+- win probability
+- K/backward-K alerts
 - gameData.flags
 - gameData.probablePitchers
 - series X of Y

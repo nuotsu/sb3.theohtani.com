@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { fetchPlayer } from '@/lib/fetch'
 import PlayerContainer from './PlayerContainer'
 import Headshot from '@/ui/Headshot'
+import { cn } from '@/lib/utils'
 
 export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
 	if (!data) return null
@@ -32,7 +33,10 @@ export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
 	return (
 		<div
 			ref={ref}
-			className="no-scrollbar border-subdued/50 grid snap-x snap-mandatory auto-cols-[100%] [grid-auto-flow:column] overflow-x-auto border-b *:snap-start"
+			className={cn(
+				'no-scrollbar border-subdued/50 grid snap-x snap-mandatory auto-cols-[100%] [grid-auto-flow:column] overflow-x-auto border-b [--offset:4ch]! *:snap-start',
+				'[&>*:not(:last-child):hover+*_img]:-translate-x-lh [&>*:not(:last-child):hover+*]:pointer-events-none',
+			)}
 		>
 			<PlayerContainer player={batter} key={batter?.id}>
 				{battingStats && (
@@ -66,11 +70,16 @@ export function NextBatter({
 
 	return (
 		<div
-			className="flex items-center gap-[.5ch] px-[.5ch]"
+			className="flex snap-always items-center gap-[.5ch] px-[.5ch]"
 			title={player?.fullName}
 			key={player.id}
 		>
-			<Headshot type="colored" player={player} className="h-lh" size={96} />
+			<Headshot
+				type="colored"
+				player={player}
+				className="h-lh transition-transform"
+				size={96}
+			/>
 			<span>{player?.lastName}</span>
 			<small className="opacity-50">{label}</small>
 		</div>

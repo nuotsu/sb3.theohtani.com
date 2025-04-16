@@ -41,7 +41,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					</div>
 				)}
 
-				<Venue className="col-span-2 ml-12" data={data} />
+				{!isLive && <Venue className="col-span-2 ml-12" data={data} />}
 			</article>
 
 			{isLive && (

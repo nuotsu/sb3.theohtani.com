@@ -27,7 +27,7 @@ export function teamLogoUrl(team?: MLB.Team, size = 128) {
 
 export function getInvert(team?: MLB.Team) {
 	return [
-		'Houston Astros',
+		// 'Houston Astros',
 		'Miami Marlins',
 		'San Diego Padres',
 		'San Francisco Giants',

@@ -28,7 +28,7 @@ export default function PlayerContainer({
 				className="flex grow items-center gap-x-[inherit]"
 				title={player.fullName}
 			>
-				<span className="line-clamp-1">{player?.lastName}</span>
+				<span className="line-clamp-1 break-all">{player?.lastName}</span>
 			</div>
 
 			<div className="flex items-center gap-x-[inherit]">{children}</div>

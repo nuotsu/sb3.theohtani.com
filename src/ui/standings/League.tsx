@@ -11,9 +11,8 @@ export default function League({ record }: { record: MLB.StandingsRecord }) {
 	const [league] = data?.leagues ?? []
 
 	return (
-		<article className="@container border">
-			<h2>{league.name}</h2>
-			<TeamRecords teamRecords={record.teamRecords} />
+		<article className="@container">
+			<TeamRecords heading={league.name} teamRecords={record.teamRecords} />
 		</article>
 	)
 }

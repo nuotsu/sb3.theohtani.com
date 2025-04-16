@@ -11,9 +11,11 @@ export default function Division({ record }: { record: MLB.StandingsRecord }) {
 	const [division] = data?.divisions ?? []
 
 	return (
-		<article className="@container border">
-			<h2>{division.nameShort}</h2>
-			<TeamRecords teamRecords={record.teamRecords} />
+		<article className="@container">
+			<TeamRecords
+				heading={division.nameShort}
+				teamRecords={record.teamRecords}
+			/>
 		</article>
 	)
 }

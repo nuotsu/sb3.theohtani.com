@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import HomeRun from './HomeRun'
+import Venue from '@/ui/game/Venue'
 
 export default function Details({ data }: { data?: MLB.LiveData | null }) {
 	const { plays } = data?.liveData ?? {}
@@ -12,7 +13,7 @@ export default function Details({ data }: { data?: MLB.LiveData | null }) {
 	)
 
 	return (
-		<div className={cn('flex h-[2lh] flex-col items-center')}>
+		<div className={cn('relative flex h-[2lh] flex-col items-stretch')}>
 			{currentPlay && (
 				// @ts-ignore
 				<marquee
@@ -26,6 +27,14 @@ export default function Details({ data }: { data?: MLB.LiveData | null }) {
 			)}
 
 			{currentPlay?.includes('homers') && <HomeRun currentPlay={currentPlay} />}
+
+			<Venue
+				className={cn(
+					'absolute inset-x-0 top-0 -z-1 p-[.5ch] transition-opacity',
+					currentPlay && 'opacity-0',
+				)}
+				data={data}
+			/>
 		</div>
 	)
 }

@@ -2,8 +2,6 @@ export default function HomeRun({ currentPlay }: { currentPlay?: string }) {
 	const scorers = currentPlay?.match(/scores/g)?.length ?? 0
 	const size = scorers ? scorers + 1 : 1
 
-	console.log({ currentPlay, size })
-
 	const text = {
 		1: 'Solo Home Run',
 		2: '2 Run Home Run',
@@ -12,7 +10,7 @@ export default function HomeRun({ currentPlay }: { currentPlay?: string }) {
 	}[size]
 
 	return (
-		<div className="h-lh text-bg w-full bg-amber-400">
+		<div className="h-lh text-bg bg-amber-400">
 			{/* @ts-ignore */}
 			<marquee
 				className="font-dot animate-pulse text-2xl leading-none font-extrabold uppercase"

@@ -4,14 +4,29 @@ import { fetchMLBLive } from '@/lib/fetch'
 import { cn } from '@/lib/utils'
 
 export default function TeamRecords({
+	heading,
 	teamRecords,
 }: {
+	heading?: string
 	teamRecords: MLB.StandingsTeamRecord[]
 }) {
 	if (!teamRecords.length) return null
 
 	return (
 		<table className="w-full table-fixed text-center tabular-nums">
+			<thead>
+				<tr className="align-end bg-bg/60 sticky top-0 uppercase backdrop-blur">
+					<th className="w-[8ch] @sm:w-[14ch] @lg:w-[20ch]">
+						<small className="block leading-tight">{heading}</small>
+					</th>
+					{['W-L', 'GB', 'Pct', 'Strk'].map((label) => (
+						<td className="text-subdued" key={label}>
+							<small>{label}</small>
+						</td>
+					))}
+				</tr>
+			</thead>
+
 			<tbody>
 				{teamRecords.map((teamRecord) => (
 					<tr className="*:px-[.5ch]" key={teamRecord.team.id}>
@@ -58,7 +73,7 @@ function Team({ teamRecord }: { teamRecord: MLB.StandingsTeamRecord }) {
 		<TeamColor
 			as="th"
 			team={teamRecord.team as MLB.Team}
-			className="w-[7ch] pr-[.25ch]! text-left font-normal @sm:w-[14ch] @lg:w-[20ch]"
+			className="pr-0! text-left"
 		>
 			<div className="flex items-center gap-x-[.5ch]">
 				<span className="line-clamp-1 leading-none @max-lg:hidden">

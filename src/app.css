@@ -27,6 +27,10 @@
 		width: auto;
 		height: auto;
 	}
+
+	th {
+		font-weight: normal;
+	}
 }
 
 /* animations */

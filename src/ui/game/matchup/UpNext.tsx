@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { fetchPlayer } from '@/lib/fetch'
 import PlayerContainer from './PlayerContainer'
-import NextBatter from './NextBatter'
+import Headshot from '@/ui/Headshot'
 
 export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
+	if (!data) return null
+
 	const ref = useRef<HTMLDivElement>(null)
 
 	const { offense, inningHalf } = data?.liveData.linescore ?? {}
@@ -49,6 +51,28 @@ export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
 
 			<NextBatter label="On deck" player={onDeck} />
 			<NextBatter label="In hole" player={inHole} />
+		</div>
+	)
+}
+
+export function NextBatter({
+	label,
+	player,
+}: {
+	label: string
+	player?: MLB.Player | null
+}) {
+	if (!player) return null
+
+	return (
+		<div
+			className="flex items-center gap-[.5ch] px-[.5ch]"
+			title={player?.fullName}
+			key={player.id}
+		>
+			<Headshot type="colored" player={player} className="h-lh" size={96} />
+			<span>{player?.lastName}</span>
+			<small className="opacity-50">{label}</small>
 		</div>
 	)
 }

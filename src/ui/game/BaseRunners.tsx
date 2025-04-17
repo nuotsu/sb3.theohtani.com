@@ -41,7 +41,7 @@ export default function BaseRunners({
 							i === 0 && 'order-2',
 							i === 1 && 'order-1',
 							i === 2 && 'order-3',
-							runners.includes(i) && 'bg-fg',
+							runners.includes(i) && 'bg-current text-yellow-400',
 						)}
 						title={`${runner?.fullName} on ${base}`}
 						key={i}

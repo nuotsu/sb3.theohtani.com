@@ -27,7 +27,7 @@ export default function Team({
 		<TeamColor
 			team={team}
 			className={cn(
-				'relative flex items-center gap-x-[.5ch] px-[.5ch]',
+				'relative flex items-center gap-x-[.5ch] overflow-hidden px-[.5ch]',
 				isOffense && '',
 				isPreview ? 'row-span-2' : 'col-span-2',
 			)}
@@ -35,9 +35,9 @@ export default function Team({
 		>
 			{team ? (
 				<>
-					<TeamLogo className="h-lh" team={team} draggable={false} />
+					<TeamLogo className="h-lh scale-115" team={team} draggable={false} />
 
-					<div className="flex grow items-center gap-[inherit]">
+					<div className="relative flex grow items-center gap-[inherit]">
 						<h2 className="@max-lg:hidden">{team?.clubName}</h2>
 
 						<abbr className="@lg:hidden" title={team?.name}>

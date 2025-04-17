@@ -4,8 +4,8 @@ export default function HomeRun({ currentPlay }: { currentPlay?: string }) {
 
 	const text = {
 		1: 'Solo Home Run',
-		2: '2 Run Home Run',
-		3: '3 Run Home Run',
+		2: '2-Run Home Run',
+		3: '3-Run Home Run',
 		4: 'Grand Slam',
 	}[size]
 

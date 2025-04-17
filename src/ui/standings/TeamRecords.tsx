@@ -22,7 +22,7 @@ export default function TeamRecords({
 
 					{['W-L', 'Pct', 'GB', 'Strk', 'Rank'].map((label) => (
 						<td
-							className={cn('text-subdued', label === 'W-L' && 'w-[6ch]')}
+							className={cn('text-subdued', label === 'W-L' && 'min-w-[6ch]')}
 							key={label}
 						>
 							<small>{label}</small>

@@ -61,10 +61,11 @@ function Row({
 				return (
 					<td
 						className={cn(
-							'transition-colors',
-							runs > 0 && 'font-bold',
+							'border-subdued/50 transition-colors data-[third]:border-l',
+							runs > 0 ? 'font-bold' : 'text-fg/50',
 							current && 'bg-subdued/50',
 						)}
+						data-third={(i !== 0 && i % 3 === 0) || undefined}
 						key={i}
 					>
 						<Flip disable={!current}>{calledEarly ? 'X' : runs}</Flip>

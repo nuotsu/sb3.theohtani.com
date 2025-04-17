@@ -37,9 +37,22 @@ export default function Matchup({
 				{pitchingStats && (
 					<>
 						{pitchingStats.summary !== '0.0 IP, 0 ER, 0 K, 0 BB' && (
-							<small className="line-clamp-1 opacity-50">
-								{pitchingStats.summary}
-							</small>
+							<table className="text-center text-[x-small]/none opacity-50">
+								<tbody>
+									<tr className="text-[smaller]">
+										<th>IP</th>
+										<th>ER</th>
+										<th>K</th>
+										<th>BB</th>
+									</tr>
+									<tr className="tabular-nums *:px-[.5ch]">
+										<td>{pitchingStats.inningsPitched}</td>
+										<td>{pitchingStats.earnedRuns}</td>
+										<td>{pitchingStats.strikeOuts}</td>
+										<td>{pitchingStats.baseOnBalls}</td>
+									</tr>
+								</tbody>
+							</table>
 						)}
 						<span className="flex items-baseline tabular-nums">
 							<small>P:</small>

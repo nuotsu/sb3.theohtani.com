@@ -22,7 +22,7 @@ export default function CurrentInning({
 			{['Top', 'Bottom'].includes(inningState) && (
 				<VscTriangleUp
 					className={cn(
-						'anim-fade -mr-0.5 text-xs',
+						'anim-fade -mr-0.5 text-xs text-yellow-400',
 						inningState === 'Bottom' && 'rotate-180',
 					)}
 				/>

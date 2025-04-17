@@ -41,7 +41,7 @@ export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
 			<PlayerContainer player={batter} key={batter?.id}>
 				{battingStats && (
 					<>
-						<small className="line-clamp-1 opacity-50">
+						<small className="line-clamp-1 text-[x-small] opacity-50">
 							{battingStats.summary.split(' | ')[1]}
 						</small>
 						<span className="flex items-baseline gap-x-[.2ch]">

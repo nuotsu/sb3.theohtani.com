@@ -13,6 +13,12 @@
 	--spacing-lh: 1lh;
 }
 
+@custom-variant standalone {
+	@media (display-mode: standalone) {
+		@slot;
+	}
+}
+
 @layer base {
 	html {
 		scroll-behavior: smooth;

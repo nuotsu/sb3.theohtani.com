@@ -25,7 +25,10 @@ export default function Schedule() {
 	const [liveGames, previewGames, finalGames] = [
 		games.filter(({ status }) => getGameStatus(status).isLive),
 		games.filter(({ status }) => getGameStatus(status).isPreview),
-		games.filter(({ status }) => getGameStatus(status).isFinal),
+		games.filter(
+			({ status }) =>
+				getGameStatus(status).isFinal || getGameStatus(status).isCancelled,
+		),
 	]
 
 	return (

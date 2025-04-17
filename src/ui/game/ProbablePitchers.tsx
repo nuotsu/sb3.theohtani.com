@@ -15,7 +15,7 @@ export default function ProbablePitchers({
 	const year = new Date(date).getFullYear()
 
 	return (
-		<div className={cn('grid grid-cols-2 items-start', className)}>
+		<div className={cn('grid grid-cols-2', className)}>
 			<ProbablePitcher
 				player={probablePitchers?.away}
 				team={teams?.away}
@@ -46,20 +46,22 @@ function ProbablePitcher({
 	const stat = (getStats(pitcher, year)?.stat ?? {}) as MLB.PitchingStats
 
 	return (
-		<div className="anim-fade-to-b relative -z-1 flex items-center gap-[.5ch] px-[.5ch]">
+		<div className="anim-fade-to-b relative -z-1 px-[.5ch]">
 			<TeamColor className="absolute inset-0 -z-1 opacity-50" team={team} />
 
-			<Headshot
-				type="transparent"
-				player={pitcher}
-				className="h-lh self-start"
-			/>
-			<div className="flex flex-wrap items-center gap-x-[inherit]">
-				<span className="line-clamp-1 break-all">{pitcher.lastName}</span>
+			<div className="flex items-center gap-[.5ch]">
+				<Headshot
+					type="transparent"
+					player={pitcher}
+					className="h-lh self-start"
+				/>
+				<div className="flex flex-wrap items-center gap-x-[inherit]">
+					<span className="line-clamp-1 break-all">{pitcher.lastName}</span>
 
-				<small className="opacity-50">
-					{stat.wins}-{stat.losses}, {stat.era} ERA
-				</small>
+					<small className="opacity-50">
+						{stat.wins}-{stat.losses}, {stat.era} ERA
+					</small>
+				</div>
 			</div>
 		</div>
 	)

@@ -21,7 +21,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 
 	return (
 		<GameProvider value={{ game, data }}>
-			<article className="@container grid grid-cols-2">
+			<article className="@container isolate grid grid-cols-2">
 				<DiamondScore className={cn(isPreview && 'col-span-2')} />
 
 				{!isPreview && <Scoreboard />}
@@ -39,7 +39,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 
 				{isPreview && <ProbablePitchers className="col-span-full ml-12" />}
 
-				{!isLive && <Venue className="h-lh col-span-full ml-12" />}
+				{!isLive && <Venue className="h-lh col-span-full ml-12 p-[.5ch]" />}
 			</article>
 		</GameProvider>
 	)

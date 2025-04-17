@@ -5,9 +5,7 @@ import HomeRun from './HomeRun'
 import Venue from '@/ui/game/Venue'
 
 export default function Details({ data }: { data?: MLB.LiveData | null }) {
-	const { plays } = data?.liveData ?? {}
-	console.log(plays)
-	const currentPlay = plays?.currentPlay.result.description
+	const currentPlay = data?.liveData?.plays.currentPlay.result.description
 
 	const scoring = ['homers', 'scores'].some((type) =>
 		currentPlay?.includes(type),

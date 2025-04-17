@@ -3,6 +3,7 @@ import BaseRunners from './BaseRunners'
 import CurrentInning from './CurrentInning'
 import Team from './Team'
 import { cn } from '@/lib/utils'
+import GameStatus from './GameStatus'
 
 export default function DiamondScore({
 	data,
@@ -41,20 +42,7 @@ export default function DiamondScore({
 					/>
 				)}
 
-				{(isFinal || isPreview || isCancelled) && (
-					<span className="relative col-span-full row-span-full m-auto text-center text-[x-small] font-bold uppercase">
-						{(isFinal || isCancelled) &&
-							(game.status.reason || game.status.detailedState)}
-						{isPreview && (
-							<time dateTime={game.gameDate}>
-								{new Date(game.gameDate).toLocaleTimeString('en-US', {
-									hour: 'numeric',
-									minute: '2-digit',
-								})}
-							</time>
-						)}
-					</span>
-				)}
+				{!isLive && <GameStatus game={game} />}
 			</div>
 
 			<Team side="away" data={data} game={game} />

@@ -2,6 +2,7 @@
 
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/fetch'
+import Loading from '@/ui/Loading'
 import Division from './Division'
 import League from './League'
 import { cn } from '@/lib/utils'
@@ -15,16 +16,12 @@ export default function Standings() {
 	)
 
 	if (isLoading)
-		return (
-			<section>
-				<h2>Loading standings...</h2>
-			</section>
-		)
+		return <Loading className="justify-center">Loading standings...</Loading>
 
 	if (!data || data.records.length === 0)
 		return (
 			<section>
-				<h2>No standings</h2>
+				<h2 className="text-center">No standings</h2>
 			</section>
 		)
 

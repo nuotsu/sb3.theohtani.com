@@ -2,6 +2,7 @@
 
 import { useStorage } from '@/lib/store'
 import { fetchMLBLive } from '@/lib/fetch'
+import Loading from '@/ui/Loading'
 import SeasonProgress from './SeasonProgress'
 import Game from './Game'
 
@@ -11,7 +12,8 @@ export default function Schedule() {
 		`/api/v1/schedule?sportId=1&startDate=${date}&endDate=${date}`,
 	)
 
-	if (isLoading) return <h2 className="text-center">Loading games...</h2>
+	if (isLoading)
+		return <Loading className="justify-center">Loading games...</Loading>
 
 	if (!data || data.totalGames === 0)
 		return <h2 className="text-center">No games</h2>

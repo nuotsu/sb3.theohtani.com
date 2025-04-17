@@ -1,3 +1,4 @@
+import Loading from '@/ui/Loading'
 import getGameStatus from '@/lib/game-status'
 import TeamColor from '@/ui/team/TeamColor'
 import TeamLogo from '@/ui/team/TeamLogo'
@@ -32,26 +33,35 @@ export default function Team({
 			)}
 			key={team?.id}
 		>
-			<TeamLogo className="h-lh" team={team} draggable={false} />
+			{team ? (
+				<>
+					<TeamLogo className="h-lh" team={team} draggable={false} />
 
-			<div className="flex grow items-center gap-[inherit]">
-				<h2 className="@max-lg:hidden">{team?.clubName || 'Loading...'}</h2>
+					<div className="flex grow items-center gap-[inherit]">
+						<h2 className="@max-lg:hidden">{team?.clubName}</h2>
 
-				<abbr className="@lg:hidden" title={team?.name}>
-					{team?.abbreviation || 'Loading...'}
-				</abbr>
+						<abbr className="@lg:hidden" title={team?.name}>
+							{team?.abbreviation}
+						</abbr>
 
-				{team?.record && (
-					<small className="opacity-50">
-						{team?.record.wins}-{team?.record.losses}
-					</small>
-				)}
-			</div>
+						{team?.record && (
+							<small className="opacity-50">
+								{team?.record.wins}-{team?.record.losses}
+							</small>
+						)}
+					</div>
 
-			{!isPreview && (
-				<Flip className="text-right font-black tabular-nums" disable={!isLive}>
-					{data?.liveData.linescore.teams[side].runs}
-				</Flip>
+					{!isPreview && (
+						<Flip
+							className="text-right font-black tabular-nums"
+							disable={!isLive}
+						>
+							{data?.liveData.linescore.teams[side].runs}
+						</Flip>
+					)}
+				</>
+			) : (
+				<Loading />
 			)}
 		</TeamColor>
 	)

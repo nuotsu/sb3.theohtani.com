@@ -16,11 +16,15 @@ export default function TeamRecords({
 		<table className="w-full table-fixed text-center tabular-nums">
 			<thead>
 				<tr className="align-end bg-bg/60 sticky top-0 uppercase backdrop-blur">
-					<th className="w-[8ch] @sm:w-[14ch] @lg:w-[20ch]">
+					<th className="sticky left-0 w-[8ch] @sm:w-[14ch] @lg:w-[20ch]">
 						<small className="block leading-tight">{heading}</small>
 					</th>
-					{['W-L', 'Pct', 'GB', 'Strk'].map((label) => (
-						<td className="text-subdued" key={label}>
+
+					{['W-L', 'Pct', 'GB', 'Strk', 'Rank'].map((label) => (
+						<td
+							className={cn('text-subdued', label === 'W-L' && 'w-[6ch]')}
+							key={label}
+						>
 							<small>{label}</small>
 						</td>
 					))}
@@ -58,6 +62,8 @@ export default function TeamRecords({
 								{teamRecord.streak.streakCode}
 							</td>
 						)}
+
+						<td>{teamRecord.leagueRank}</td>
 					</tr>
 				))}
 			</tbody>

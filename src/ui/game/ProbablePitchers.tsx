@@ -1,3 +1,4 @@
+import { useGameContext } from './store'
 import { useStorage } from '@/lib/store'
 import { fetchPlayer, getStats } from '@/lib/fetch'
 import TeamColor from '@/ui/team/TeamColor'
@@ -5,11 +6,9 @@ import Headshot from '@/ui/Headshot'
 import { cn } from '@/lib/utils'
 
 export default function ProbablePitchers({
-	data,
 	className,
-}: {
-	data?: MLB.LiveData | null
-} & React.ComponentProps<'div'>) {
+}: React.ComponentProps<'div'>) {
+	const { data } = useGameContext()
 	const { probablePitchers, teams } = data?.gameData ?? {}
 
 	const { date } = useStorage()

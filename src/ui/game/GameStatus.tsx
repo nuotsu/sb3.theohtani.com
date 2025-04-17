@@ -1,18 +1,25 @@
+import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
 import { VscCircleSlash } from 'react-icons/vsc'
 
-export default function GameStatus({ game }: { game: MLB.ScheduleGame }) {
+export default function GameStatus() {
+	const { game } = useGameContext()
 	const { isPreview, isFinal, isCancelled } = getGameStatus(game.status)
+	const { reason, detailedState } = game.status
 
 	const EndState =
-		game.status.reason ||
-		(game.status.detailedState === 'Cancelled' && (
-			<VscCircleSlash className="text-2xl" title={game.status.detailedState} />
+		(reason === 'Inclement Weather' && (
+			<span className="break-all">Weather</span>
 		)) ||
-		game.status.detailedState
+		reason ||
+		(detailedState === 'Cancelled' && (
+			<VscCircleSlash className="text-2xl" title={detailedState} />
+		)) ||
+		(detailedState === 'Completed Early' && 'Compl. early') ||
+		detailedState
 
 	return (
-		<span className="relative col-span-full row-span-full m-auto text-center text-[x-small] font-bold uppercase">
+		<span className="relative col-span-full row-span-full m-auto w-[2.25rem] text-center text-[x-small] font-bold uppercase">
 			{(isFinal || isCancelled) && EndState}
 
 			{isPreview && (

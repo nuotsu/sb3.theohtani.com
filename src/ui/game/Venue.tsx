@@ -1,12 +1,9 @@
+import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
 import { cn } from '@/lib/utils'
 
-export default function Venue({
-	data,
-	className,
-}: {
-	data?: MLB.LiveData | null
-} & React.ComponentProps<'div'>) {
+export default function Venue({ className }: React.ComponentProps<'div'>) {
+	const { data } = useGameContext()
 	const { isPreview } = getGameStatus(data?.gameData.status)
 	const { venue, weather } = data?.gameData || {}
 	const hasWeather =
@@ -22,7 +19,7 @@ export default function Venue({
 		<div className={className}>
 			<p
 				className={cn(
-					'gap-x-ch h-lh grid text-center text-xs/tight text-balance opacity-50',
+					'gap-x-ch grid text-center text-xs/tight text-balance opacity-50',
 					hasWeather && 'grid-cols-3',
 					interlude && 'text-subdued',
 				)}

@@ -1,10 +1,12 @@
 'use client'
 
-import { cn } from '@/lib/utils'
+import { useGameContext } from '@/ui/game/store'
 import HomeRun from './HomeRun'
 import Venue from '@/ui/game/Venue'
+import { cn } from '@/lib/utils'
 
-export default function Details({ data }: { data?: MLB.LiveData | null }) {
+export default function Details() {
+	const { data } = useGameContext()
 	const currentPlay = data?.liveData?.plays.currentPlay.result.description
 
 	const scoring = ['homers', 'scores'].some((type) =>
@@ -32,7 +34,6 @@ export default function Details({ data }: { data?: MLB.LiveData | null }) {
 					'absolute inset-x-0 top-0 -z-1 p-[.5ch] transition-opacity',
 					currentPlay && 'opacity-0',
 				)}
-				data={data}
 			/>
 		</div>
 	)

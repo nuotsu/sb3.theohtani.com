@@ -1,11 +1,12 @@
+import { useGameContext } from '@/ui/game/store'
 import { useEffect, useRef } from 'react'
 import { fetchPlayer } from '@/lib/fetch'
 import PlayerContainer from './PlayerContainer'
 import Headshot from '@/ui/Headshot'
 import { cn } from '@/lib/utils'
 
-export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
-	if (!data) return null
+export default function UpNext() {
+	const { data } = useGameContext()
 
 	const ref = useRef<HTMLDivElement>(null)
 
@@ -26,7 +27,6 @@ export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
 
 	useEffect(() => {
 		if (!ref.current) return
-
 		ref.current.scrollTo({ left: 0, behavior: 'smooth' })
 	}, [offense?.battingOrder])
 

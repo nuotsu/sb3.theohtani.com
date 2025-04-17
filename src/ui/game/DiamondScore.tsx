@@ -1,19 +1,16 @@
+import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
 import BaseRunners from './BaseRunners'
 import CurrentInning from './CurrentInning'
+import GameStatus from './GameStatus'
 import Team from './Team'
 import { cn } from '@/lib/utils'
-import GameStatus from './GameStatus'
 
 export default function DiamondScore({
-	data,
-	game,
 	className,
-}: {
-	data?: MLB.LiveData | null
-	game: MLB.ScheduleGame
-} & React.ComponentProps<'header'>) {
-	const { isPreview, isLive, isFinal, isCancelled } = getGameStatus(game.status)
+}: React.ComponentProps<'header'>) {
+	const { game } = useGameContext()
+	const { isLive } = getGameStatus(game.status)
 
 	return (
 		<header
@@ -32,21 +29,17 @@ export default function DiamondScore({
 						'col-span-full row-span-full m-auto',
 						!isLive && 'text-subdued [&_.base]:bg-bg',
 					)}
-					data={data}
 				/>
 
 				{isLive && (
-					<CurrentInning
-						className="relative col-span-full row-[2/-1]"
-						data={data}
-					/>
+					<CurrentInning className="relative col-span-full row-[2/-1]" />
 				)}
 
-				{!isLive && <GameStatus game={game} />}
+				{!isLive && <GameStatus />}
 			</div>
 
-			<Team side="away" data={data} game={game} />
-			<Team side="home" data={data} game={game} />
+			<Team side="away" />
+			<Team side="home" />
 		</header>
 	)
 }

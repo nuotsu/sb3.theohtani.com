@@ -1,13 +1,12 @@
+import { useGameContext } from '@/ui/game/store'
 import { fetchPlayer } from '@/lib/fetch'
 import Flip from '@/ui/Flip'
 import PlayerContainer from './PlayerContainer'
 import UpNext from './UpNext'
 import { cn } from '@/lib/utils'
 
-export default function Matchup({
-	data,
-	className,
-}: { data?: MLB.LiveData | null } & React.ComponentProps<'div'>) {
+export default function Matchup({ className }: React.ComponentProps<'div'>) {
+	const { data } = useGameContext()
 	const { defense, inningState, inningHalf } = data?.liveData.linescore ?? {}
 	const { teams } = data?.liveData.boxscore ?? {}
 
@@ -62,7 +61,7 @@ export default function Matchup({
 				)}
 			</PlayerContainer>
 
-			<UpNext data={data} />
+			<UpNext />
 		</div>
 	)
 }

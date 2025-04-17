@@ -1,16 +1,16 @@
+import { useGameContext } from './store'
 import { VscTriangleUp } from 'react-icons/vsc'
 import { cn } from '@/lib/utils'
 import Flip from '@/ui/Flip'
 
 export default function CurrentInning({
-	data,
 	className,
-}: {
-	data?: MLB.LiveData | null
-} & React.ComponentProps<'div'>) {
+}: React.ComponentProps<'div'>) {
+	const { data } = useGameContext()
+
 	if (!data) return null
 
-	const { currentInning, inningState } = data.liveData.linescore
+	const { currentInning, inningState = '' } = data?.liveData.linescore ?? {}
 
 	return (
 		<div

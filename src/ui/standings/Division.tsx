@@ -14,7 +14,7 @@ export default function Division({ record }: { record: MLB.StandingsRecord }) {
 	return (
 		<article className="@container">
 			<TeamRecords
-				heading={division.nameShort}
+				heading={division?.nameShort}
 				teamRecords={record.teamRecords}
 			/>
 		</article>

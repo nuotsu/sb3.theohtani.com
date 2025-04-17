@@ -1,8 +1,10 @@
+import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
-export default function Scoreboard({ data }: { data?: MLB.LiveData | null }) {
+export default function Scoreboard() {
+	const { data } = useGameContext()
 	const { innings = [] } = data?.liveData.linescore ?? {}
 
 	return (
@@ -22,21 +24,17 @@ export default function Scoreboard({ data }: { data?: MLB.LiveData | null }) {
 					</tr>
 				</thead>
 				<tbody>
-					<Row data={data} side="away" />
-					<Row data={data} side="home" />
+					<Row side="away" />
+					<Row side="home" />
 				</tbody>
 			</table>
 		</div>
 	)
 }
 
-function Row({
-	data,
-	side,
-}: {
-	data?: MLB.LiveData | null
-	side: 'away' | 'home'
-}) {
+function Row({ side }: { side: 'away' | 'home' }) {
+	const { data } = useGameContext()
+
 	const {
 		innings = [],
 		inningState,

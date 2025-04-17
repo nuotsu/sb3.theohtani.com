@@ -10,9 +10,10 @@ import { cn } from '@/lib/utils'
 export default function Standings() {
 	const { date } = useStorage()
 
+	const leagueIds = getLeagueIds()
+
 	const { data, isLoading } = fetchMLBLive<MLB.Standings>(
-		`/api/v1/standings?leagueId=103,104&season=${new Date(date).getFullYear()}`,
-		{ refreshInterval: 1000 * 60 },
+		`/api/v1/standings?leagueId=${leagueIds.join(',')}&season=${new Date(date).getFullYear()}`,
 	)
 
 	if (isLoading)
@@ -32,7 +33,8 @@ export default function Standings() {
 			<div
 				className={cn('gap-ch grid', {
 					'md:grid-cols-2': data.records.length >= 2,
-					'md:grid-cols-3': data.records.length > 4,
+					'md:grid-cols-3':
+						data.records.length > 4 && data.records.length !== 5,
 				})}
 			>
 				{data.records.map((record) =>
@@ -45,4 +47,15 @@ export default function Standings() {
 			</div>
 		</section>
 	)
+}
+
+function getLeagueIds() {
+	const { sportId } = useStorage()
+	const { data, isLoading } = fetchMLBLive<{ teams: MLB.Team[] }>(
+		`/api/v1/teams?sportId=${sportId}`,
+	)
+
+	if (isLoading) return []
+
+	return [...new Set(data?.teams.map((team) => team.league.id).filter(Number))]
 }

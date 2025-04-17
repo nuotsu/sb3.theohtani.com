@@ -22,7 +22,7 @@ export default function TeamRecords({
 
 					{['W-L', 'Pct', 'GB', 'Strk', 'Rank'].map((label) => (
 						<td
-							className={cn('text-subdued', label === 'W-L' && 'min-w-[6ch]')}
+							className={cn('text-fg/25', label === 'W-L' && 'min-w-[6ch]')}
 							key={label}
 						>
 							<small>{label}</small>
@@ -52,16 +52,14 @@ export default function TeamRecords({
 
 						<td>{teamRecord.divisionGamesBack}</td>
 
-						{teamRecord.streak && (
-							<td
-								className={cn({
-									'text-green-200': teamRecord.streak.streakType === 'wins',
-									'text-red-200': teamRecord.streak.streakType === 'losses',
-								})}
-							>
-								{teamRecord.streak.streakCode}
-							</td>
-						)}
+						<td
+							className={cn({
+								'text-green-200': teamRecord.streak?.streakType === 'wins',
+								'text-red-200': teamRecord.streak?.streakType === 'losses',
+							})}
+						>
+							{teamRecord.streak?.streakCode}
+						</td>
 
 						<td>{teamRecord.leagueRank}</td>
 					</tr>
@@ -81,8 +79,8 @@ function Team({ teamRecord }: { teamRecord: MLB.StandingsTeamRecord }) {
 			team={teamRecord.team as MLB.Team}
 			className="pr-0! text-left"
 		>
-			<div className="flex items-center gap-x-[.5ch]">
-				<span className="line-clamp-1 leading-none @max-lg:hidden">
+			<div className="flex items-center gap-x-[.5ch] *:line-clamp-1">
+				<span className="leading-none @max-lg:hidden">
 					{teamRecord.team.name}
 				</span>
 
@@ -95,7 +93,7 @@ function Team({ teamRecord }: { teamRecord: MLB.StandingsTeamRecord }) {
 				</abbr>
 
 				<TeamLogo
-					className="h-lh ml-auto inline-block"
+					className="h-lh ml-auto inline-block shrink-0"
 					team={team}
 					draggable={false}
 				/>

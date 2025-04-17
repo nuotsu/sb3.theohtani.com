@@ -7,10 +7,10 @@ import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function DateButton({ day }: { day: string }) {
-	const { date, setDate, today } = useStorage()
+	const { sportId, date, setDate, today } = useStorage()
 
 	const { data, isLoading } = fetchMLBLive<MLB.Schedule>(
-		`/api/v1/schedule?sportId=1&startDate=${day}&endDate=${day}`,
+		`/api/v1/schedule?sportId=${sportId}&startDate=${day}&endDate=${day}`,
 	)
 
 	const isToday = compareDate(day, today)
@@ -29,7 +29,7 @@ export default function DateButton({ day }: { day: string }) {
 			<time
 				className={cn(
 					'gap-ch sm:py-ch grid w-full grow border py-[.5ch] leading-none',
-					day !== date && 'border-subdued',
+					day === date ? 'border-b-transparent' : 'border-subdued',
 				)}
 				dateTime={day}
 			>

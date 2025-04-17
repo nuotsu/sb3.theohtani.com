@@ -1,3 +1,4 @@
+import { useGameContext } from './store'
 import Loading from '@/ui/Loading'
 import getGameStatus from '@/lib/game-status'
 import TeamColor from '@/ui/team/TeamColor'
@@ -5,15 +6,8 @@ import TeamLogo from '@/ui/team/TeamLogo'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
-export default function Team({
-	side,
-	data,
-	game,
-}: {
-	side: 'away' | 'home'
-	data?: MLB.LiveData | null
-	game: MLB.ScheduleGame
-}) {
+export default function Team({ side }: { side: 'away' | 'home' }) {
+	const { game, data } = useGameContext()
 	const team = data?.gameData.teams[side]
 	const { inningState } = data?.liveData.linescore ?? {}
 	const { isPreview, isLive } = getGameStatus(game.status)

@@ -24,6 +24,18 @@ declare global {
 
 		// misc
 
+		interface Sports extends RootResponse {
+			sports: Sport[]
+		}
+
+		interface Sport extends IdentifiableObject {
+			code: string
+			name: string
+			abbreviation: string
+			sortOrder: number
+			activeStatus: boolean
+		}
+
 		interface Record {
 			wins: number // int; games won in the series/league/best of whatever
 			losses: number // int; games lost in the you know
@@ -124,7 +136,7 @@ declare global {
 		}
 
 		interface PlayerStat extends Player {
-			stats: MLB.StatEntry<MLB.PlayerStatSplit>[]
+			stats?: MLB.StatEntry<MLB.PlayerStatSplit>[]
 		}
 
 		interface PrimaryPosition {
@@ -995,7 +1007,7 @@ declare global {
 		// divisions
 
 		interface Divisions extends RootResponse {
-			divisions: Division[]
+			divisions?: Division[]
 		}
 
 		interface Division extends NameableObject {

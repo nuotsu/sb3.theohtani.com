@@ -1,3 +1,5 @@
+import getGameStatus from '@/lib/game-status'
+import { useGameContext } from './store'
 import { cn } from '@/lib/utils'
 
 const runnerKeys: Record<string, number> = {
@@ -7,11 +9,9 @@ const runnerKeys: Record<string, number> = {
 }
 
 export default function BaseRunners({
-	data,
 	className,
-}: {
-	data?: MLB.LiveData | null
-} & React.ComponentProps<'div'>) {
+}: React.ComponentProps<'div'>) {
+	const { game, data } = useGameContext()
 	const { offense = {}, inningState } = data?.liveData.linescore ?? {}
 
 	const runners = Object.keys(offense)
@@ -19,6 +19,8 @@ export default function BaseRunners({
 		.filter(Number.isInteger)
 
 	const interlude = ['Middle', 'End'].includes(inningState ?? '')
+
+	const { isLive } = getGameStatus(game.status)
 
 	return (
 		<div
@@ -41,7 +43,9 @@ export default function BaseRunners({
 							i === 0 && 'order-2',
 							i === 1 && 'order-1',
 							i === 2 && 'order-3',
-							runners.includes(i) && 'bg-current text-yellow-400',
+							isLive &&
+								runners.includes(i) &&
+								'border-yellow-400 bg-yellow-400',
 						)}
 						title={`${runner?.fullName} on ${base}`}
 						key={i}

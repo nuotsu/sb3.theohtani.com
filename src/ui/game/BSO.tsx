@@ -1,9 +1,8 @@
+import { useGameContext } from './store'
 import { cn } from '@/lib/utils'
 
-export default function BSO({
-	data,
-	className,
-}: { data?: MLB.LiveData | null } & React.ComponentProps<'div'>) {
+export default function BSO({ className }: React.ComponentProps<'div'>) {
+	const { data } = useGameContext()
 	const { balls, strikes, outs, inningState } = data?.liveData.linescore ?? {}
 	const interlude = ['Middle', 'End'].includes(inningState ?? '')
 

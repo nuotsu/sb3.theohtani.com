@@ -1,5 +1,4 @@
 import useSWR, { SWRConfiguration } from 'swr'
-import { useStorage } from './store'
 
 const BASE_URL = 'https://statsapi.mlb.com'
 
@@ -42,7 +41,7 @@ export function getStats(
 	player: MLB.Player,
 	year: number = new Date().getFullYear(),
 ) {
-	return (player as MLB.PlayerStat).stats[0].splits.find(
+	return (player as MLB.PlayerStat).stats?.[0].splits.find(
 		(split) => split.season === year.toString(),
 	)
 }

@@ -56,7 +56,7 @@ function ProbablePitcher({
 				className="h-lh self-start"
 			/>
 			<div className="flex flex-wrap items-center gap-x-[inherit]">
-				<span className="line-clamp-1">{pitcher.lastName}</span>
+				<span className="line-clamp-1 break-all">{pitcher.lastName}</span>
 
 				<small className="opacity-50">
 					{stat.wins}-{stat.losses}, {stat.era} ERA

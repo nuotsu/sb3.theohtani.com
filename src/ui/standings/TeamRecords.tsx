@@ -19,7 +19,7 @@ export default function TeamRecords({
 					<th className="w-[8ch] @sm:w-[14ch] @lg:w-[20ch]">
 						<small className="block leading-tight">{heading}</small>
 					</th>
-					{['W-L', 'GB', 'Pct', 'Strk'].map((label) => (
+					{['W-L', 'Pct', 'GB', 'Strk'].map((label) => (
 						<td className="text-subdued" key={label}>
 							<small>{label}</small>
 						</td>

@@ -58,7 +58,7 @@ export default function DateButton({ day }: { day: string }) {
 				) : (
 					<small className="*:px-ch bg-subdued mx-auto flex items-center rounded-full *:py-[.5ch]">
 						{data.totalGamesInProgress > 0 && (
-							<b className="bg-bg ring-subdued -mr-[.5ch] flex items-center gap-x-1 rounded-full pl-[0.75ch]! ring ring-inset">
+							<b className="bg-bg ring-subdued -mr-[.5ch] flex items-center gap-x-1 rounded-full pl-[.75ch]! ring ring-inset">
 								<span className="animate-pulse text-green-400">•</span>{' '}
 								<Flip>{data.totalGamesInProgress}</Flip>
 							</b>

@@ -6,6 +6,7 @@ import Venue from '@/ui/game/Venue'
 
 export default function Details({ data }: { data?: MLB.LiveData | null }) {
 	const { plays } = data?.liveData ?? {}
+	console.log(plays)
 	const currentPlay = plays?.currentPlay.result.description
 
 	const scoring = ['homers', 'scores'].some((type) =>

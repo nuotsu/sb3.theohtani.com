@@ -1,4 +1,5 @@
 import useSWR, { SWRConfiguration } from 'swr'
+import { useStorage } from './store'
 
 const BASE_URL = 'https://statsapi.mlb.com'
 
@@ -20,12 +21,28 @@ export function fetchMLBLive<T = any>(
 	})
 }
 
-export function fetchPlayer(player?: MLB.BasicPlayerData) {
+export function fetchPlayer(
+	player?: MLB.BasicPlayerData,
+	group?: 'hitting' | 'pitching',
+) {
 	if (!player) return { data: null, isLoading: false }
 
-	const { data, isLoading } = fetchMLBLive<{ people: MLB.Player[] }>(
-		player.link,
+	const { data, ...rest } = fetchMLBLive<{ people: MLB.Player[] }>(
+		[player.link, group && `?hydrate=stats(group=[${group}],type=[yearByYear])`]
+			.filter(Boolean)
+			.join(''),
 	)
 
-	return { data: data?.people[0], isLoading }
+	const person = data?.people[0]
+
+	return { data: person, ...rest }
+}
+
+export function getStats(
+	player: MLB.Player,
+	year: number = new Date().getFullYear(),
+) {
+	return (player as MLB.PlayerStat).stats[0].splits.find(
+		(split) => split.season === year.toString(),
+	)
 }

@@ -7,6 +7,7 @@ import Scoreboard from './Scoreboard'
 import BSO from './BSO'
 import Matchup from './matchup/Matchup'
 import Details from './Details/Details'
+import ProbablePitchers from './ProbablePitchers'
 import Venue from './Venue'
 import { cn } from '@/lib/utils'
 
@@ -41,7 +42,11 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 					</div>
 				)}
 
-				{!isLive && <Venue className="col-span-2 ml-12" data={data} />}
+				{isPreview && (
+					<ProbablePitchers className="col-span-full ml-12" data={data} />
+				)}
+
+				{!isLive && <Venue className="col-span-full ml-12" data={data} />}
 			</article>
 
 			{isLive && (

@@ -12,11 +12,11 @@ export default function UpNext({ data }: { data?: MLB.LiveData | null }) {
 	const { offense, inningHalf } = data?.liveData.linescore ?? {}
 	const { teams } = data?.liveData.boxscore ?? {}
 
-	const [{ data: batter }, { data: onDeck }, { data: inHole }] = [
+	const [batter, onDeck, inHole] = [
 		fetchPlayer(offense?.batter),
 		fetchPlayer(offense?.onDeck),
 		fetchPlayer(offense?.inHole),
-	]
+	].map((player) => player.data)
 
 	const battingStats = (
 		teams?.[inningHalf === 'Top' ? 'away' : 'home'].players[
@@ -74,12 +74,7 @@ export function NextBatter({
 			title={player?.fullName}
 			key={player.id}
 		>
-			<Headshot
-				type="colored"
-				player={player}
-				className="h-lh transition-transform"
-				size={96}
-			/>
+			<Headshot player={player} className="h-lh transition-transform" />
 			<span>{player?.lastName}</span>
 			<small className="opacity-50">{label}</small>
 		</div>

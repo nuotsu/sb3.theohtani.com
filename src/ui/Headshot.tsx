@@ -1,8 +1,11 @@
+import { cn } from '@/lib/utils'
+
 export default function Headshot({
-	type = 'transparent',
+	type = 'colored',
 	player,
-	size = 128,
+	size = 96,
 	zoom,
+	className,
 	...props
 }: {
 	type?: 'transparent' | 'colored'
@@ -25,6 +28,7 @@ export default function Headshot({
 
 	return (
 		<img
+			className={cn('text-transparent', className)}
 			src={url.toString()}
 			alt={player.fullName}
 			title={player.fullName}

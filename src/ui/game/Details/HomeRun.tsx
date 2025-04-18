@@ -1,6 +1,11 @@
 export default function HomeRun({ currentPlay }: { currentPlay?: string }) {
 	const scorers = currentPlay?.match(/scores/g)?.length ?? 0
-	const size = scorers ? scorers + 1 : 1
+
+	const size = currentPlay?.includes('grand slam')
+		? 4
+		: scorers
+			? scorers + 1
+			: 1
 
 	const text = {
 		1: 'Solo Home Run',

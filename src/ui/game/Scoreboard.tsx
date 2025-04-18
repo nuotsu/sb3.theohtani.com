@@ -66,7 +66,15 @@ function Row({ side }: { side: 'away' | 'home' }) {
 						data-third={(i !== 0 && i % 3 === 0) || undefined}
 						key={i}
 					>
-						<Flip disable={!current}>{calledEarly ? 'X' : runs}</Flip>
+						<Flip
+							className={cn(
+								current &&
+									'group-has-data-[scoring]/game:animate-pulse group-has-data-[scoring]/game:text-yellow-400',
+							)}
+							disable={!current}
+						>
+							{calledEarly ? 'X' : runs}
+						</Flip>
 					</td>
 				)
 			})}

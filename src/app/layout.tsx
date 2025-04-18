@@ -14,7 +14,18 @@ const f2 = Doto({
 export const metadata: Metadata = {
 	title: 'MLB Scorebug',
 	description: 'Live MLB Scorebug',
-	icons: 'https://fav.farm/⚾',
+	icons: [
+		{
+			url: '/icon-48.png',
+			sizes: '48x48',
+			type: 'image/png',
+		},
+		{
+			url: '/icon.png',
+			sizes: '192x192',
+			type: 'image/png',
+		},
+	],
 }
 
 export default function RootLayout({

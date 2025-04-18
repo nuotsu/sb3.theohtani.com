@@ -22,6 +22,7 @@ export default function Details() {
 						'overflow-fade my-auto text-sm',
 						scoring && 'text-yellow-400',
 					)}
+					data-scoring={scoring || undefined}
 					title={currentPlay}
 					children={currentPlay}
 				/>

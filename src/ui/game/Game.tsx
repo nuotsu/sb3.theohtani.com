@@ -24,7 +24,7 @@ export default function Game({ game }: { game: MLB.ScheduleGame }) {
 		<GameProvider value={{ game, data }}>
 			<article
 				className={cn(
-					'anim-fade @container isolate grid grid-cols-2',
+					'anim-fade group/game @container isolate grid grid-cols-2',
 					isFinal && 'grid-rows-[auto_auto_1fr]',
 				)}
 			>

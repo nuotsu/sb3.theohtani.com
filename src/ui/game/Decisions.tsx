@@ -39,11 +39,13 @@ export default function Decisions({ className }: React.ComponentProps<'div'>) {
 			)}
 		>
 			<PlayerContainer className={startingPitcherClassName} player={winner}>
-				{winnerStats && (
-					<small className="line-clamp-1 text-current/50 tabular-nums">
-						({winnerStats.wins}-{winnerStats.losses}, {winnerStats.era})
-					</small>
-				)}
+				<small className="line-clamp-1 text-current/50 tabular-nums">
+					{winnerStats && (
+						<>
+							({winnerStats.wins}-{winnerStats.losses}, {winnerStats.era})
+						</>
+					)}
+				</small>
 				<PitchingStats
 					stats={getPitchingStats(winner, data, winningPitcherIsHomeTeam)}
 				/>
@@ -64,11 +66,13 @@ export default function Decisions({ className }: React.ComponentProps<'div'>) {
 			</PlayerContainer>
 
 			<PlayerContainer className={startingPitcherClassName} player={loser}>
-				{loserStats && (
-					<small className="line-clamp-1 text-current/50 tabular-nums">
-						({loserStats.wins}-{loserStats.losses}, {loserStats.era})
-					</small>
-				)}
+				<small className="line-clamp-1 text-current/50 tabular-nums">
+					{loserStats && (
+						<>
+							({loserStats.wins}-{loserStats.losses}, {loserStats.era})
+						</>
+					)}
+				</small>
 				<PitchingStats
 					stats={getPitchingStats(loser, data, !winningPitcherIsHomeTeam)}
 				/>

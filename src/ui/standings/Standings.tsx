@@ -27,7 +27,7 @@ export default function Standings() {
 		)
 
 	return (
-		<section id="standings" className="my-lh">
+		<section>
 			<h2 className="font-dot text-center">Standings</h2>
 
 			<div
@@ -57,5 +57,5 @@ function getLeagueIds() {
 
 	if (isLoading) return []
 
-	return [...new Set(data?.teams.map((team) => team.league.id).filter(Number))]
+	return [...new Set(data?.teams?.map((team) => team.league.id).filter(Number))]
 }

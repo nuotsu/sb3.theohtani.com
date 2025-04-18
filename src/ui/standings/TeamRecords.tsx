@@ -15,7 +15,7 @@ export default function TeamRecords({
 	return (
 		<table className="w-full table-fixed text-center tabular-nums">
 			<thead>
-				<tr className="align-end bg-bg/60 sticky top-0 uppercase backdrop-blur">
+				<tr className="align-end bg-bg/50 sticky top-0 uppercase backdrop-blur">
 					<th className="sticky left-0 w-[8ch] @sm:w-[14ch] @lg:w-[20ch]">
 						<small className="block leading-tight">{heading}</small>
 					</th>

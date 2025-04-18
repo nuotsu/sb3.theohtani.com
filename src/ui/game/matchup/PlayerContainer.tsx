@@ -17,7 +17,10 @@ export default function PlayerContainer({
 				className,
 			)}
 		>
-			<Headshot player={player} className="anim-fade-to-t h-full" />
+			<Headshot
+				player={player}
+				className="anim-fade-to-t size-lh object-contain"
+			/>
 
 			<div
 				className="flex grow items-center gap-x-[inherit]"

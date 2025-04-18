@@ -29,7 +29,11 @@ export default function Team({ side }: { side: 'away' | 'home' }) {
 		>
 			{team ? (
 				<>
-					<TeamLogo className="h-lh scale-115" team={team} draggable={false} />
+					<TeamLogo
+						className="size-lh object-cover"
+						team={team}
+						draggable={false}
+					/>
 
 					<div className="relative flex grow items-center gap-[inherit]">
 						<h2 className="@max-lg:hidden">{team?.clubName}</h2>

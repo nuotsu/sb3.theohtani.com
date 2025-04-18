@@ -9,7 +9,8 @@ export default function NavItem({
 }: {
 	label: string
 	triggerClassName?: string
-} & React.ComponentProps<'dialog'>) {
+	children?: React.ReactNode
+}) {
 	return (
 		<Dialog
 			trigger={(props) => (
@@ -17,7 +18,6 @@ export default function NavItem({
 					{label}
 				</button>
 			)}
-			className="text-fg m-auto bg-transparent"
 		>
 			{children}
 		</Dialog>

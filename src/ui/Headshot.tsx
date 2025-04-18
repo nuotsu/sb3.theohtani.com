@@ -34,6 +34,7 @@ export default function Headshot({
 			title={player.fullName}
 			width={size}
 			height={size}
+			onError={(e) => (e.currentTarget.style.opacity = '0')}
 			{...props}
 		/>
 	)

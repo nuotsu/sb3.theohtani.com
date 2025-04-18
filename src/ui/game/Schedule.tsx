@@ -35,31 +35,28 @@ export default function Schedule() {
 		<>
 			<SeasonProgress data={data} />
 
-			<Group>
-				{liveGames.map((game) => (
-					<Game game={game} key={game.gamePk} />
-				))}
-			</Group>
-
-			<Group label="Scheduled">
-				{previewGames.map((game) => (
-					<Game game={game} key={game.gamePk} />
-				))}
-			</Group>
-
-			<Group label="Final">
-				{finalGames.map((game) => (
-					<Game game={game} key={game.gamePk} />
-				))}
-			</Group>
+			<Group games={liveGames} />
+			<Group
+				label={!!(liveGames.length + finalGames.length) && 'Scheduled'}
+				games={previewGames}
+			/>
+			<Group
+				label={!!(liveGames.length + previewGames.length) && 'Final'}
+				games={finalGames}
+			/>
 		</>
 	)
 }
 
 function Group({
 	label,
-	children,
-}: { label?: string } & React.ComponentProps<'div'>) {
+	games,
+}: {
+	label?: string | false
+	games: MLB.ScheduleGame[]
+}) {
+	if (!games.length) return null
+
 	return (
 		<div className="[&+&]:mt-ch">
 			{label && (
@@ -76,7 +73,11 @@ function Group({
 				</h2>
 			)}
 
-			<div className="gap-lh grid md:grid-cols-2">{children}</div>
+			<div className="gap-lh grid md:grid-cols-2">
+				{games.map((game) => (
+					<Game game={game} key={game.gamePk} />
+				))}
+			</div>
 		</div>
 	)
 }

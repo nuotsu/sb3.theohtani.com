@@ -13,7 +13,7 @@ export default function HomeRun({ currentPlay }: { currentPlay?: string }) {
 		<div className="h-lh text-bg bg-amber-400">
 			{/* @ts-ignore */}
 			<marquee
-				className="font-dot animate-pulse text-2xl leading-none font-extrabold uppercase"
+				className="font-dot text-2xl leading-none font-extrabold uppercase"
 				direction="right"
 				children={text}
 			/>

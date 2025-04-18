@@ -23,8 +23,8 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
-			<body className="bg-bg text-fg cursor-crosshair antialiased">
+		<html lang="en" className="no-scrollbar">
+			<body className="bg-bg text-fg cursor-crosshair antialiased has-open:overflow-hidden">
 				{children}
 			</body>
 		</html>

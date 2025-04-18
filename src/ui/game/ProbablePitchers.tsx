@@ -53,7 +53,7 @@ function ProbablePitcher({
 				<Headshot
 					type="transparent"
 					player={pitcher}
-					className="h-lh self-start"
+					className="size-lh self-start"
 				/>
 				<div className="flex flex-wrap items-center gap-x-[inherit]">
 					<span className="line-clamp-1 break-all">{pitcher.lastName}</span>

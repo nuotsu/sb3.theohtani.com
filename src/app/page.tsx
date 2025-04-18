@@ -9,12 +9,11 @@ export default function Home() {
 		<main className="flex min-h-svh flex-col">
 			<Header />
 
-			<section id="scores" className="gap-ch grid">
+			<section className="gap-ch mb-lh grid">
 				<DatePicker />
 				<Schedule />
 			</section>
 
-			<Standings />
 			<Nav />
 		</main>
 	)

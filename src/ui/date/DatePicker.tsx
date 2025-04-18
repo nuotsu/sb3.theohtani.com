@@ -14,7 +14,7 @@ export default function DatePicker() {
 		return new Date(newDate.getTime() + delta).toISOString().slice(0, 10)
 	}
 
-	const days = [-2, -1, 0, 1, 2].map(addDay)
+	const days = [-3, -2, -1, 0, 1, 2, 3].map(addDay)
 
 	return (
 		<nav className="relative grid">
@@ -32,7 +32,7 @@ export default function DatePicker() {
 				</button>
 			)}
 
-			<div className="lg:gap-ch grid grid-cols-5 gap-[.5ch]">
+			<div className="lg:gap-ch grid grid-cols-5 gap-[.5ch] max-md:*:first-of-type:hidden max-md:*:last-of-type:hidden md:grid-cols-7">
 				{days.map((day) => (
 					<DateButton day={day} key={day} />
 				))}

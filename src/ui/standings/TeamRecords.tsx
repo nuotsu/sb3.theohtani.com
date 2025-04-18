@@ -13,7 +13,7 @@ export default function TeamRecords({
 	if (!teamRecords.length) return null
 
 	return (
-		<table className="w-full table-fixed text-center tabular-nums">
+		<table className="w-full text-center tabular-nums">
 			<thead>
 				<tr className="align-end max-md:bg-bg/50 sticky top-0 uppercase max-md:backdrop-blur">
 					<th className="sticky left-0 w-[8ch] @sm:w-[14ch] @lg:w-[20ch]">

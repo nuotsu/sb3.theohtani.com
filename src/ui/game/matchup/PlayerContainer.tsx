@@ -23,7 +23,7 @@ export default function PlayerContainer({
 			/>
 
 			<div
-				className="flex grow items-center gap-x-[inherit]"
+				className="player-name flex grow items-center gap-x-[inherit]"
 				title={player.fullName}
 			>
 				<span className="line-clamp-1 break-all">{player?.lastName}</span>

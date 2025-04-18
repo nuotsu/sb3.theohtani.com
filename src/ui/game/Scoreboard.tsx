@@ -70,7 +70,7 @@ function Row({ side }: { side: 'away' | 'home' }) {
 					</td>
 				)
 			})}
-			<td className="border-l font-bold">
+			<td className="border-subdued border-l font-bold">
 				<Flip disable={!isLive}>{teams?.[side].runs}</Flip>
 			</td>
 			<td>

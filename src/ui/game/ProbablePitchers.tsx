@@ -43,11 +43,14 @@ function ProbablePitcher({
 
 	if (isLoading || !pitcher) return <div />
 
-	const stat = (getStats(pitcher, year)?.stat ?? {}) as MLB.PitchingStats
+	const stat = getStats(pitcher, year)?.stat as MLB.PitchingStats | null
 
 	return (
-		<div className="anim-fade-to-b relative -z-1 px-[.5ch]">
-			<TeamColor className="absolute inset-0 -z-1 opacity-50" team={team} />
+		<div className="anim-fade-to-b relative px-[.5ch]">
+			<TeamColor
+				className="pointer-events-none absolute inset-0 -z-1 opacity-50"
+				team={team}
+			/>
 
 			<div className="flex items-center gap-[.5ch]">
 				<Headshot
@@ -56,11 +59,15 @@ function ProbablePitcher({
 					className="size-lh self-start"
 				/>
 				<div className="flex flex-wrap items-center gap-x-[inherit]">
-					<span className="line-clamp-1 break-all">{pitcher.lastName}</span>
+					<span className="line-clamp-1 break-all" title={pitcher.fullName}>
+						{pitcher.lastName}
+					</span>
 
-					<small className="opacity-50">
-						{stat.wins}-{stat.losses}, {stat.era} ERA
-					</small>
+					{stat && (
+						<small className="text-current/50 tabular-nums">
+							({stat.wins}-{stat.losses}, {stat.era})
+						</small>
+					)}
 				</div>
 			</div>
 		</div>

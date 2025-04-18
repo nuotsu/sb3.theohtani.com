@@ -12,7 +12,11 @@ export default function Nav() {
 				<Standings />
 			</NavItem>
 
-			<NavItem label="⚙️ Settings" triggerClassName={buttonClassName}>
+			<NavItem
+				label="⚙️ Settings"
+				triggerClassName={buttonClassName}
+				className="mx-auto max-w-max"
+			>
 				<div className="m-auto max-w-max">
 					<SportSelector />
 				</div>

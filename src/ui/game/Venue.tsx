@@ -19,7 +19,7 @@ export default function Venue(props: React.ComponentProps<'div'>) {
 		<div {...props}>
 			<p
 				className={cn(
-					'gap-x-ch grid text-center text-xs/tight text-balance opacity-50',
+					'gap-x-ch grid text-center text-xs/tight text-balance text-current/50',
 					hasWeather && 'grid-cols-3',
 					interlude && 'text-subdued',
 				)}

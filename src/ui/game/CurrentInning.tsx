@@ -1,7 +1,7 @@
 import { useGameContext } from './store'
 import { VscTriangleUp } from 'react-icons/vsc'
-import { cn } from '@/lib/utils'
 import Flip from '@/ui/Flip'
+import { cn } from '@/lib/utils'
 
 export default function CurrentInning({
 	className,
@@ -11,15 +11,17 @@ export default function CurrentInning({
 	if (!data) return null
 
 	const { currentInning, inningState = '' } = data?.liveData.linescore ?? {}
+	const isActive = ['Top', 'Bottom'].includes(inningState)
 
 	return (
 		<div
 			className={cn(
-				'drop-shadow-bg m-auto flex items-center gap-0.5 text-center drop-shadow-sm',
+				'm-auto flex items-center gap-0.5 text-center',
+				isActive ? 'row-[2/-1]' : 'row-span-full',
 				className,
 			)}
 		>
-			{['Top', 'Bottom'].includes(inningState) && (
+			{isActive && (
 				<VscTriangleUp
 					className={cn(
 						'anim-fade -mr-0.5 text-xs text-yellow-400',

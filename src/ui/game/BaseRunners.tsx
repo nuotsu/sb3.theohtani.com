@@ -20,13 +20,12 @@ export default function BaseRunners({
 
 	const interlude = ['Middle', 'End'].includes(inningState ?? '')
 
-	const { isLive } = getGameStatus(game.status)
+	const { isPreview, isLive, isFinal } = getGameStatus(game.status)
 
 	return (
 		<div
 			className={cn(
 				'ring-bg grid rotate-45 grid-cols-2 gap-1 ring-4 transition-colors',
-				interlude && 'text-subdued',
 				className,
 			)}
 		>
@@ -43,9 +42,11 @@ export default function BaseRunners({
 							i === 0 && 'order-2',
 							i === 1 && 'order-1',
 							i === 2 && 'order-3',
-							isLive &&
-								runners.includes(i) &&
-								'border-yellow-400 bg-yellow-400',
+							{
+								'bg-current text-yellow-400': isLive && runners.includes(i),
+								'text-current/50': isLive && !runners.includes(i),
+								'text-subdued': interlude || isPreview || isFinal,
+							},
 						)}
 						title={`${runner?.fullName} on ${base}`}
 						key={i}

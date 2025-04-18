@@ -43,7 +43,7 @@ export default function Team({ side }: { side: 'away' | 'home' }) {
 						</abbr>
 
 						{team?.record && (
-							<small className="opacity-50">
+							<small className="text-current/50">
 								{team?.record.wins}-{team?.record.losses}
 							</small>
 						)}

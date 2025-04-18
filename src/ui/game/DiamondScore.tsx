@@ -24,16 +24,9 @@ export default function DiamondScore({
 			</p>
 
 			<div className="relative z-1 col-[1/2] row-[2/-1] grid w-12 grid-rows-2 pr-1 pl-2">
-				<BaseRunners
-					className={cn(
-						'col-span-full row-span-full m-auto',
-						!isLive && 'text-subdued [&_.base]:bg-bg',
-					)}
-				/>
+				<BaseRunners className="col-span-full row-span-full m-auto" />
 
-				{isLive && (
-					<CurrentInning className="relative col-span-full row-[2/-1]" />
-				)}
+				{isLive && <CurrentInning className="relative col-span-full" />}
 
 				{!isLive && <GameStatus />}
 			</div>

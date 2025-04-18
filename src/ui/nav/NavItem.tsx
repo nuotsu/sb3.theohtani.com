@@ -5,12 +5,11 @@ import Dialog from '@/ui/Dialog'
 export default function NavItem({
 	label,
 	triggerClassName,
-	children,
+	...props
 }: {
 	label: string
 	triggerClassName?: string
-	children?: React.ReactNode
-}) {
+} & React.ComponentProps<'div'>) {
 	return (
 		<Dialog
 			trigger={(props) => (
@@ -18,8 +17,7 @@ export default function NavItem({
 					{label}
 				</button>
 			)}
-		>
-			{children}
-		</Dialog>
+			{...props}
+		/>
 	)
 }

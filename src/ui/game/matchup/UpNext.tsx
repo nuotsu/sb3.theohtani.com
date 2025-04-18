@@ -41,7 +41,7 @@ export default function UpNext() {
 			<PlayerContainer player={batter} key={batter?.id}>
 				{battingStats && (
 					<>
-						<small className="line-clamp-1 text-[x-small] opacity-50">
+						<small className="line-clamp-1 text-[x-small] text-current/50">
 							{battingStats.summary.split(' | ')[1]}
 						</small>
 						<span className="flex items-baseline gap-x-[.2ch]">
@@ -76,7 +76,7 @@ export function NextBatter({
 		>
 			<Headshot player={player} className="h-lh transition-transform" />
 			<span>{player?.lastName}</span>
-			<small className="opacity-50">{label}</small>
+			<small className="text-current/50">{label}</small>
 		</div>
 	)
 }

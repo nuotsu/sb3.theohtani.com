@@ -2,7 +2,7 @@ import { useGameContext } from './context'
 import { cn } from '@/lib/utils'
 
 export default function Venue(props: React.ComponentProps<'div'>) {
-	const { data, isPreview } = useGameContext()
+	const { data, isPreview, isInterlude } = useGameContext()
 	const { venue, weather } = data?.gameData || {}
 
 	const hasWeather =
@@ -10,17 +10,13 @@ export default function Venue(props: React.ComponentProps<'div'>) {
 		weather?.temp ||
 		weather?.wind
 
-	const interlude = ['Middle', 'End'].includes(
-		data?.liveData.linescore.inningState ?? '',
-	)
-
 	return (
 		<div {...props}>
 			<p
 				className={cn(
 					'gap-x-ch grid text-center text-balance text-current/50',
 					hasWeather && 'grid-cols-3',
-					interlude && 'text-subdued',
+					isInterlude && 'text-subdued',
 				)}
 			>
 				<small

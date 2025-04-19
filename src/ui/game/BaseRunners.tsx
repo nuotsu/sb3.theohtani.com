@@ -10,11 +10,9 @@ const runnerKeys: Record<string, number> = {
 export default function BaseRunners({
 	className,
 }: React.ComponentProps<'div'>) {
-	const { data, isLive, hasNoSpoiler } = useGameContext()
+	const { data, isLive, isInterlude, hasNoSpoiler } = useGameContext()
 
-	const { offense = {}, inningState } = data?.liveData.linescore ?? {}
-
-	const interlude = ['Middle', 'End'].includes(inningState ?? '')
+	const { offense = {} } = data?.liveData.linescore ?? {}
 
 	const runners = Object.keys(offense)
 		.map((key) => runnerKeys[key])
@@ -45,7 +43,7 @@ export default function BaseRunners({
 									isLive && !hasNoSpoiler && runners.includes(i),
 								'text-current/50':
 									isLive && hasNoSpoiler && !runners.includes(i),
-								'text-subdued': interlude || !isLive || hasNoSpoiler,
+								'text-subdued': isInterlude || !isLive || hasNoSpoiler,
 							},
 						)}
 						title={`${runner?.fullName} on ${base}`}

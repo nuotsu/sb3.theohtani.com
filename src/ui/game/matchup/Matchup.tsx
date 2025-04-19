@@ -7,10 +7,8 @@ import UpNext from './UpNext'
 import { cn } from '@/lib/utils'
 
 export default function Matchup({ className }: React.ComponentProps<'div'>) {
-	const { data } = useGameContext()
-	const { defense, inningState } = data?.liveData.linescore ?? {}
-
-	const interlude = ['Middle', 'End'].includes(inningState ?? '')
+	const { data, isInterlude } = useGameContext()
+	const { defense } = data?.liveData.linescore ?? {}
 
 	const { data: pitcher } = fetchPlayer(defense?.pitcher)
 
@@ -21,7 +19,7 @@ export default function Matchup({ className }: React.ComponentProps<'div'>) {
 		<div
 			className={cn(
 				'relative h-[2lh] grow transition-colors',
-				interlude && 'text-subdued [&_img]:opacity-20',
+				isInterlude && 'text-subdued [&_img]:opacity-20',
 				className,
 			)}
 		>

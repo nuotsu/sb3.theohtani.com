@@ -9,6 +9,7 @@ type Props = {
 } & Partial<
 	// derived
 	{
+		isInterlude: boolean
 		hasNoSpoiler: boolean
 	} & ReturnType<typeof getGameStatus>
 >
@@ -27,11 +28,16 @@ export function GameProvider({
 }) {
 	const { game, data } = value
 
+	const isInterlude = ['Middle', 'End'].includes(
+		data?.liveData.linescore.inningState ?? '',
+	)
+
 	return (
 		<GameContext.Provider
 			value={{
 				game,
 				data,
+				isInterlude,
 				...getGameStatus(game.status),
 				hasNoSpoiler: checkNoSpoiler(game),
 			}}

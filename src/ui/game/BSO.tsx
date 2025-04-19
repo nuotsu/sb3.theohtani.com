@@ -2,23 +2,22 @@ import { useGameContext } from './context'
 import { cn } from '@/lib/utils'
 
 export default function BSO({ className }: React.ComponentProps<'div'>) {
-	const { data } = useGameContext()
-	const { balls, strikes, outs, inningState } = data?.liveData.linescore ?? {}
-	const interlude = ['Middle', 'End'].includes(inningState ?? '')
+	const { data, isInterlude } = useGameContext()
+	const { balls, strikes, outs } = data?.liveData.linescore ?? {}
 
 	return (
 		<div className={cn('leading-none', className)}>
 			<dl
 				className={cn(
 					'grid grid-cols-[auto_1fr] items-center gap-0.5 transition-colors *:text-[x-small] [&_dt]:text-center',
-					interlude && 'text-subdued',
+					isInterlude && 'text-subdued',
 				)}
 			>
 				<dt>B</dt>
 				<dd>
 					<Indicators
 						className="text-green-500"
-						current={interlude ? 0 : balls}
+						current={isInterlude ? 0 : balls}
 						max={3}
 					/>
 				</dd>
@@ -26,12 +25,15 @@ export default function BSO({ className }: React.ComponentProps<'div'>) {
 				<dd>
 					<Indicators
 						className="text-yellow-300"
-						current={interlude ? 0 : strikes}
+						current={isInterlude ? 0 : strikes}
 					/>
 				</dd>
 				<dt>O</dt>
 				<dd>
-					<Indicators className="text-red-500" current={interlude ? 0 : outs} />
+					<Indicators
+						className="text-red-500"
+						current={isInterlude ? 0 : outs}
+					/>
 				</dd>
 			</dl>
 		</div>

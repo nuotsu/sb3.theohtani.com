@@ -41,8 +41,6 @@ export default function BaseRunners({
 							{
 								'bg-current text-yellow-400':
 									isLive && !hasNoSpoiler && runners.includes(i),
-								'text-current/50':
-									isLive && hasNoSpoiler && !runners.includes(i),
 								'text-subdued': isInterlude || !isLive || hasNoSpoiler,
 							},
 						)}

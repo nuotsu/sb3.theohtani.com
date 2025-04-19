@@ -28,20 +28,32 @@ export default function SpoilerProtection() {
 }
 
 function Matchup({ game }: { game: MLB.ScheduleGame }) {
-	const { isLive } = getGameStatus(game.status)
+	const { isLive, isPreview } = getGameStatus(game.status)
 
 	return (
-		<div className="relative grid grid-cols-2" key={game.gamePk}>
+		<div
+			className={cn('relative grid grid-cols-2', {
+				'order-first': isLive,
+				'order-last': !isPreview && !isLive,
+			})}
+			key={game.gamePk}
+		>
 			<TeamToggle id={game.teams.away.team.id} />
 			<TeamToggle id={game.teams.home.team.id} />
 
 			<small
 				className={cn(
-					'absolute top-1/2 left-1/2 -translate-1/2 px-[.5ch] text-[x-small]! leading-tight font-bold uppercase',
-					isLive ? 'text-fg bg-green-600' : 'bg-fg text-bg',
+					'pointer-events-none absolute top-1/2 left-1/2 -translate-1/2 px-[.5ch] text-[x-small]! leading-tight font-bold uppercase',
+					{
+						'text-fg bg-green-600': isLive,
+						'text-fg bg-red-600': isPreview,
+						'bg-fg text-bg': !isPreview && !isLive,
+					},
 				)}
 			>
-				{isLive ? <span className="animate-pulse">Live</span> : 'vs'}
+				{isLive && <span className="animate-pulse">Live</span>}
+				{isPreview && 'vs'}
+				{!isPreview && !isLive && 'Final'}
 			</small>
 		</div>
 	)

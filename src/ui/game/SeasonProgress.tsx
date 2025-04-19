@@ -32,7 +32,7 @@ export default function SeasonProgress({ data }: { data: MLB.Schedule }) {
 	return (
 		<div className={cn(css.root, 'grid items-stretch gap-x-[.5ch] uppercase')}>
 			<div
-				className="mr-auto [grid-area:current]"
+				className="mr-auto min-w-max [grid-area:current]"
 				style={{ marginLeft: `calc(100% * ${current / MAX})` }}
 			>
 				<div className="grid -translate-x-1/2 text-center">

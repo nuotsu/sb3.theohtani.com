@@ -1,4 +1,4 @@
-import { Geist, Doto } from 'next/font/google'
+import { Geist, Doto, Chakra_Petch } from 'next/font/google'
 import '@/app.css'
 import type { Metadata } from 'next'
 
@@ -11,6 +11,11 @@ const f2 = Doto({
 	subsets: ['latin'],
 })
 
+const f3 = Chakra_Petch({
+	subsets: ['latin'],
+	weight: ['400', '500', '700'],
+})
+
 export const metadata: Metadata = {
 	title: 'Live Scorebug',
 	description: 'Live Scorebug',
@@ -21,7 +26,7 @@ export const metadata: Metadata = {
 			type: 'image/png',
 		},
 		{
-			url: '/icon.png',
+			url: '/icon-192.png',
 			sizes: '192x192',
 			type: 'image/png',
 		},

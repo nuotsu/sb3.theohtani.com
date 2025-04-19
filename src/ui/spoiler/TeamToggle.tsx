@@ -38,7 +38,7 @@ export default function TeamToggle({ id }: { id: number }) {
 
 			<div
 				className={cn(
-					'absolute inset-0 grid place-content-center border-b-2 border-black/10 bg-black/70 backdrop-blur-[2px] transition-transform',
+					'absolute inset-0 grid place-content-center border-b-2 border-black/10 bg-black/70 backdrop-blur-[1.5px] transition-transform',
 					!hide && '-translate-y-full',
 				)}
 			>

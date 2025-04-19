@@ -21,7 +21,7 @@ export default function BaseRunners({
 	return (
 		<div
 			className={cn(
-				'ring-bg grid rotate-45 grid-cols-2 gap-1 ring-4 transition-colors',
+				'ring-bg bg-bg grid rotate-45 grid-cols-2 gap-1 ring-4 transition-colors',
 				className,
 			)}
 		>

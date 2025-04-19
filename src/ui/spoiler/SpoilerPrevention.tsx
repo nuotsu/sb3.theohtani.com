@@ -12,20 +12,19 @@ export default function SpoilerPrevention() {
 
 	if (isLoading || !data) return null
 
-	const teamIds = [
-		...new Set(
-			data.dates?.[0]?.games?.flatMap(({ teams }) =>
-				Object.values(teams).map(({ team }: MLB.ScheduleTeam) => team.id),
-			),
-		),
-	]
+	const { games } = data.dates?.[0]
 
 	return (
 		<fieldset>
 			<legend>Spoiler Prevention</legend>
 
 			<div className="gap-ch flex flex-wrap">
-				{teamIds?.map((id) => <TeamToggle id={id} key={id} />)}
+				{games?.map((game) => (
+					<div className="grid grid-cols-2" key={game.gamePk}>
+						<TeamToggle id={game.teams.away.team.id} />
+						<TeamToggle id={game.teams.home.team.id} />
+					</div>
+				))}
 			</div>
 		</fieldset>
 	)

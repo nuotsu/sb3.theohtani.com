@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import Headshot from '@/ui/Headshot'
+import { cn } from '@/lib/utils'
 
 export default function PlayerContainer({
 	player,

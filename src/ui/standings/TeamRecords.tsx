@@ -22,7 +22,10 @@ export default function TeamRecords({
 
 					{['W-L', 'Pct', 'GB', 'Strk', 'Rank'].map((label) => (
 						<td
-							className={cn('text-fg/25', label === 'W-L' && 'min-w-[6ch]')}
+							className={cn(
+								'text-current/25',
+								label === 'W-L' && 'min-w-[6ch]',
+							)}
 							key={label}
 						>
 							<small>{label}</small>

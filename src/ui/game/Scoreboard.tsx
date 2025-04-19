@@ -69,7 +69,7 @@ function Row({ side }: { side: 'away' | 'home' }) {
 					<td
 						className={cn(
 							'border-subdued/50 h-lh transition-colors data-[third]:border-l',
-							runs > 0 ? 'font-bold' : 'text-fg/50',
+							runs > 0 ? 'font-bold' : 'text-current/50',
 							current && 'bg-subdued/50',
 						)}
 						data-third={(i !== 0 && i % 3 === 0) || undefined}
@@ -88,7 +88,7 @@ function Row({ side }: { side: 'away' | 'home' }) {
 					</td>
 				)
 			})}
-			<td className="border-subdued border-l font-bold">
+			<td className="border-l border-current/50 font-bold">
 				<Flip disable={!isLive}>{teams?.[side].runs}</Flip>
 			</td>
 			<td>

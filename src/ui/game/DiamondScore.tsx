@@ -10,6 +10,8 @@ export default function DiamondScore({
 }: React.ComponentProps<'header'>) {
 	const { game, isLive, hasNoSpoiler } = useGameContext()
 
+	console.log(game)
+
 	return (
 		<header
 			className={cn(
@@ -18,7 +20,13 @@ export default function DiamondScore({
 			)}
 		>
 			<p className="col-[2/-1] flex items-end justify-center text-center">
-				<small className="line-clamp-1">{game.description}</small>
+				<small className="line-clamp-1">
+					{game.description || (
+						<small className="text-current/50">
+							Series {game.seriesGameNumber} of {game.gamesInSeries}
+						</small>
+					)}
+				</small>
 			</p>
 
 			<div className="relative z-1 col-[1/2] row-[2/-1] grid w-12 grid-rows-2 pr-1 pl-2">

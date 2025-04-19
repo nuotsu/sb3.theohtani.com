@@ -1,6 +1,6 @@
 export default function TeamLogo({
 	team,
-	size,
+	size = 96,
 	...props
 }: {
 	team?: MLB.Team

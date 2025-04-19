@@ -5,11 +5,8 @@
 ## backlog
 
 - highlight -> star/favorite teams
-- spoiler prevention
-- win probability
 - K/backward-K alerts
 - gameData.flags
-- series X of Y
 - pitch sequences of an at-bat
 - player search; API endpoint?
 - YouTube game highlights API + keys

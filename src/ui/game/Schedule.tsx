@@ -63,7 +63,7 @@ function Group({
 				<h2 className="blur-gradient-to-b sticky top-0 z-1">
 					<small
 						className={cn(
-							'text-fg/25 gap-ch flex font-bold uppercase',
+							'gap-ch flex font-bold text-current/25 uppercase',
 							'before:my-auto before:grow before:border-b before:border-dashed',
 							'after:my-auto after:grow after:border-b after:border-dashed',
 						)}

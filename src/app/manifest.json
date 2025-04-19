@@ -1,7 +1,7 @@
 {
-	"name": "MLB Live Scorenug",
-	"short_name": "MLB",
-	"description": "MLB Live Scorebug",
+	"name": "Live Scorebug",
+	"short_name": "Scorebug",
+	"description": "Live Scorebug",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#000000",

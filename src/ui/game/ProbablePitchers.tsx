@@ -39,7 +39,7 @@ function ProbablePitcher({
 	team?: MLB.Team
 	year?: number
 }) {
-	const { hasNoSpoiler } = useGameContext()
+	const { hasNoSpoiler, isPreview, isLive } = useGameContext()
 	const { data: pitcher, isLoading } = fetchPlayer(player, 'pitching')
 
 	if (isLoading || !pitcher) return <div />
@@ -64,7 +64,7 @@ function ProbablePitcher({
 						{pitcher.lastName}
 					</span>
 
-					{stat && !hasNoSpoiler && (
+					{stat && (!hasNoSpoiler || isPreview || isLive) && (
 						<small className="text-current/50 tabular-nums">
 							({stat.wins}-{stat.losses}, {stat.era})
 						</small>

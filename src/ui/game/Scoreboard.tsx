@@ -32,7 +32,7 @@ export default function Scoreboard() {
 }
 
 function Row({ side }: { side: 'away' | 'home' }) {
-	const { data, isFinal, isLive, isCancelled } = useGameContext()
+	const { data, isFinal, isLive } = useGameContext()
 
 	const {
 		innings = [],
@@ -46,6 +46,11 @@ function Row({ side }: { side: 'away' | 'home' }) {
 		((inningState === 'Top' && side === 'away') ||
 			(inningState === 'Bottom' && side === 'home'))
 
+	const [lastCompletedAwayInning, lastCompletedHomeInning] = [
+		innings.findLastIndex((_, i) => !isNaN(innings[i]?.away?.runs)) + 1,
+		innings.findLastIndex((_, i) => !isNaN(innings[i]?.home?.runs)) + 1,
+	]
+
 	return (
 		<tr>
 			{Array.from({ length: Math.max(innings.length, 9) }).map((_, i) => {
@@ -55,7 +60,10 @@ function Row({ side }: { side: 'away' | 'home' }) {
 					: false
 
 				const calledEarly =
-					!isCancelled && isFinal && side === 'home' && i >= 8 && isNaN(runs)
+					i === lastCompletedHomeInning &&
+					side === 'home' &&
+					lastCompletedAwayInning !== lastCompletedHomeInning &&
+					isFinal
 
 				return (
 					<td
@@ -74,7 +82,8 @@ function Row({ side }: { side: 'away' | 'home' }) {
 							)}
 							disable={!current}
 						>
-							{calledEarly ? 'X' : runs}
+							{runs}
+							{calledEarly && 'X'}
 						</Flip>
 					</td>
 				)

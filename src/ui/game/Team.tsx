@@ -1,6 +1,5 @@
 import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
-import checkHasNoSpoiler from '@/lib/no-spoiler'
 import Loading from '@/ui/Loading'
 import TeamColor from '@/ui/team/TeamColor'
 import TeamLogo from '@/ui/team/TeamLogo'
@@ -8,17 +7,10 @@ import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function Team({ side }: { side: 'away' | 'home' }) {
-	const { data } = useGameContext()
+	const { data, hasNoSpoiler } = useGameContext()
 	const { isPreview, isLive } = getGameStatus()
-	const hasNoSpoiler = checkHasNoSpoiler()
 
 	const team = data?.gameData.teams[side]
-	const { inningState } = data?.liveData.linescore ?? {}
-
-	const isOffense =
-		isLive &&
-		((inningState === 'Top' && side === 'away') ||
-			(inningState === 'Bottom' && side === 'home'))
 
 	return (
 		<TeamColor

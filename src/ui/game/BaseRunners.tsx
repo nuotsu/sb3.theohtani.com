@@ -1,6 +1,5 @@
 import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
-import checkHasNoSpoiler from '@/lib/no-spoiler'
 import { cn } from '@/lib/utils'
 
 const runnerKeys: Record<string, number> = {
@@ -12,9 +11,8 @@ const runnerKeys: Record<string, number> = {
 export default function BaseRunners({
 	className,
 }: React.ComponentProps<'div'>) {
-	const { data } = useGameContext()
-	const { isPreview, isLive, isFinal } = getGameStatus()
-	const hasNoSpoiler = checkHasNoSpoiler()
+	const { data, hasNoSpoiler } = useGameContext()
+	const { isLive } = getGameStatus()
 
 	const { offense = {}, inningState } = data?.liveData.linescore ?? {}
 

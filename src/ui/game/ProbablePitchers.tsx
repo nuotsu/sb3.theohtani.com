@@ -1,6 +1,5 @@
 import { useGameContext } from './store'
 import { useStorage } from '@/lib/store'
-import checkHasNoSpoiler from '@/lib/no-spoiler'
 import { fetchPlayer, getStats } from '@/lib/fetch'
 import TeamColor from '@/ui/team/TeamColor'
 import Headshot from '@/ui/Headshot'
@@ -40,7 +39,7 @@ function ProbablePitcher({
 	team?: MLB.Team
 	year?: number
 }) {
-	const hasNoSpoiler = checkHasNoSpoiler()
+	const { hasNoSpoiler } = useGameContext()
 	const { data: pitcher, isLoading } = fetchPlayer(player, 'pitching')
 
 	if (isLoading || !pitcher) return <div />

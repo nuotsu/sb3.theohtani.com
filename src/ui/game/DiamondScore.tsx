@@ -1,6 +1,5 @@
 import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
-import checkHasNoSpoiler from '@/lib/no-spoiler'
 import BaseRunners from './BaseRunners'
 import CurrentInning from './CurrentInning'
 import GameStatus from './GameStatus'
@@ -10,9 +9,8 @@ import { cn } from '@/lib/utils'
 export default function DiamondScore({
 	className,
 }: React.ComponentProps<'header'>) {
-	const { game } = useGameContext()
+	const { game, hasNoSpoiler } = useGameContext()
 	const { isLive } = getGameStatus()
-	const hasNoSpoiler = checkHasNoSpoiler()
 
 	return (
 		<header

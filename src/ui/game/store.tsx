@@ -1,9 +1,14 @@
 import { createContext, useContext } from 'react'
+import checkNoSpoiler from '@/lib/no-spoiler'
 
 type Props = {
+	// initial
 	game: MLB.ScheduleGame
 	data?: MLB.LiveData | null
-}
+} & Partial<{
+	// derived
+	hasNoSpoiler: boolean
+}>
 
 const GameContext = createContext<Props>({
 	game: {} as MLB.ScheduleGame,
@@ -17,7 +22,18 @@ export function GameProvider({
 	value: Props
 	children: React.ReactNode
 }) {
-	return <GameContext.Provider value={value} children={children} />
+	const { game, data } = value
+
+	return (
+		<GameContext.Provider
+			value={{
+				game,
+				data,
+				hasNoSpoiler: checkNoSpoiler(game),
+			}}
+			children={children}
+		/>
+	)
 }
 
 export function useGameContext() {

@@ -1,12 +1,10 @@
 import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
-import checkHasNoSpoiler from '@/lib/no-spoiler'
 import { VscCircleSlash } from 'react-icons/vsc'
 
 export default function GameStatus() {
-	const { game } = useGameContext()
+	const { game, hasNoSpoiler } = useGameContext()
 	const { isPreview, isFinal, isCancelled } = getGameStatus()
-	const hasNoSpoiler = checkHasNoSpoiler()
 
 	const { reason, detailedState } = game.status
 

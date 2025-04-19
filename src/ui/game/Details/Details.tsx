@@ -28,7 +28,7 @@ export default function Details() {
 				/>
 			)}
 
-			{description?.includes('homers') && <HomeRun currentPlay={description} />}
+			{description?.includes('homers') && <HomeRun currentPlay={currentPlay} />}
 
 			<Venue
 				className={cn(

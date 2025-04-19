@@ -10,8 +10,6 @@ export default function DiamondScore({
 }: React.ComponentProps<'header'>) {
 	const { game, isLive, hasNoSpoiler } = useGameContext()
 
-	console.log(game)
-
 	return (
 		<header
 			className={cn(

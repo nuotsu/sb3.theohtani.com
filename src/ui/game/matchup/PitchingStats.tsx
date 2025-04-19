@@ -22,7 +22,7 @@ export default function PitchingStats({
 	if (!stats) return null
 
 	return (
-		<table className="text-center text-[x-small]/none text-current/50">
+		<table className="shrink-0 text-center text-[x-small]/none text-current/50">
 			<tbody>
 				<tr className="text-[smaller]">
 					<th>IP</th>

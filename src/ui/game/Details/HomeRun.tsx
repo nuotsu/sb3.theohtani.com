@@ -1,18 +1,16 @@
-export default function HomeRun({ currentPlay }: { currentPlay?: string }) {
-	const scorers = currentPlay?.match(/scores/g)?.length ?? 0
-
-	const size = currentPlay?.includes('grand slam')
-		? 4
-		: scorers
-			? scorers + 1
-			: 1
+export default function HomeRun({
+	currentPlay,
+}: {
+	currentPlay?: MLB.LivePlay
+}) {
+	const { result } = currentPlay ?? {}
 
 	const text = {
-		1: 'Solo Home Run',
-		2: '2-Run Home Run',
-		3: '3-Run Home Run',
-		4: 'Grand Slam',
-	}[size]
+		0: 'Solo Home Run',
+		1: '2-Run Home Run',
+		2: '3-Run Home Run',
+		3: 'Grand Slam',
+	}[result?.rbi ?? 0]
 
 	return (
 		<div className="h-lh text-bg bg-amber-400">

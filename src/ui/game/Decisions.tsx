@@ -29,8 +29,6 @@ export default function Decisions({ className }: React.ComponentProps<'div'>) {
 	const winningPitcherIsHomeTeam =
 		data?.liveData.boxscore.teams.home.pitchers.includes(winner?.id!)
 
-	const startingPitcherClassName = cn`relative *:last:grow *:last:justify-between @max-md:grow [&_.player-name]:grow-0`
-
 	return (
 		<div
 			className={cn(
@@ -38,14 +36,19 @@ export default function Decisions({ className }: React.ComponentProps<'div'>) {
 				className,
 			)}
 		>
-			<PlayerContainer className={startingPitcherClassName} player={winner}>
-				<small className="line-clamp-1 text-current/50 tabular-nums">
-					{winnerStats && (
-						<>
-							({winnerStats.wins}-{winnerStats.losses}, {winnerStats.era})
-						</>
-					)}
-				</small>
+			<PlayerContainer
+				className="relative"
+				player={winner}
+				subText={
+					<>
+						{winnerStats && (
+							<>
+								({winnerStats.wins}-{winnerStats.losses}, {winnerStats.era})
+							</>
+						)}
+					</>
+				}
+			>
 				<PitchingStats
 					stats={getPitchingStats(winner, data, winningPitcherIsHomeTeam)}
 				/>
@@ -55,24 +58,29 @@ export default function Decisions({ className }: React.ComponentProps<'div'>) {
 			<PlayerContainer
 				className="relative mr-auto @max-md:order-last"
 				player={save}
+				subText={
+					saveStats && (
+						<>
+							{saveStats.saves}
+							<span className="text-[xx-small]"> SV</span>
+						</>
+					)
+				}
 			>
-				{saveStats && (
-					<small className="text-current/50">
-						{saveStats.saves}
-						<span className="text-[xx-small]"> SV</span>
-					</small>
-				)}
 				<Label className="bg-blue-700">SV</Label>
 			</PlayerContainer>
 
-			<PlayerContainer className={startingPitcherClassName} player={loser}>
-				<small className="line-clamp-1 text-current/50 tabular-nums">
-					{loserStats && (
+			<PlayerContainer
+				className="relative"
+				player={loser}
+				subText={
+					loserStats && (
 						<>
 							({loserStats.wins}-{loserStats.losses}, {loserStats.era})
 						</>
-					)}
-				</small>
+					)
+				}
+			>
 				<PitchingStats
 					stats={getPitchingStats(loser, data, !winningPitcherIsHomeTeam)}
 				/>

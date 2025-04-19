@@ -41,9 +41,11 @@ export function fetchPlayer(
 }
 
 export function getStats(
-	player: MLB.Player,
+	player: MLB.Player | null,
 	year: number = new Date().getFullYear(),
 ) {
+	if (!player) return null
+
 	return (player as MLB.PlayerStat).stats?.[0].splits.find(
 		(split) => split.season === year.toString(),
 	)

@@ -5,8 +5,10 @@ export default function PlayerContainer({
 	player,
 	className,
 	children,
+	subText: subText,
 }: {
 	player?: MLB.Player | null
+	subText?: React.ReactNode
 } & React.ComponentProps<'div'>) {
 	if (!player) return null
 
@@ -27,9 +29,17 @@ export default function PlayerContainer({
 				title={player.fullName}
 			>
 				<span className="line-clamp-1 break-all">{player?.lastName}</span>
+
+				{subText && (
+					<small className="line-clamp-1 text-current/50 tabular-nums @max-sm:hidden sm:@max-[12rem]:hidden">
+						{subText}
+					</small>
+				)}
 			</div>
 
-			<div className="flex items-center gap-x-[inherit]">{children}</div>
+			{children && (
+				<div className="flex items-center gap-x-[inherit]">{children}</div>
+			)}
 		</div>
 	)
 }

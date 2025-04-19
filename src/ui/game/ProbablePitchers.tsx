@@ -66,7 +66,11 @@ function ProbablePitcher({
 
 					{stat && (!hasNoSpoiler || isPreview || isLive) && (
 						<small className="text-current/50 tabular-nums">
-							({stat.wins}-{stat.losses}, {stat.era})
+							(
+							{[`${stat.wins}-${stat.losses}`, !hasNoSpoiler && stat.era]
+								.filter(Boolean)
+								.join(', ')}
+							)
 						</small>
 					)}
 				</div>

@@ -1,5 +1,4 @@
-import { useGameContext } from './store'
-import getGameStatus from '@/lib/game-status'
+import { useGameContext } from './context'
 import { cn } from '@/lib/utils'
 
 const runnerKeys: Record<string, number> = {
@@ -11,8 +10,7 @@ const runnerKeys: Record<string, number> = {
 export default function BaseRunners({
 	className,
 }: React.ComponentProps<'div'>) {
-	const { data, hasNoSpoiler } = useGameContext()
-	const { isLive } = getGameStatus()
+	const { data, isLive, hasNoSpoiler } = useGameContext()
 
 	const { offense = {}, inningState } = data?.liveData.linescore ?? {}
 

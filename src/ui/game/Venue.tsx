@@ -1,11 +1,10 @@
-import { useGameContext } from './store'
-import getGameStatus from '@/lib/game-status'
+import { useGameContext } from './context'
 import { cn } from '@/lib/utils'
 
 export default function Venue(props: React.ComponentProps<'div'>) {
-	const { data } = useGameContext()
-	const { isPreview } = getGameStatus(data?.gameData.status)
+	const { data, isPreview } = useGameContext()
 	const { venue, weather } = data?.gameData || {}
+
 	const hasWeather =
 		(weather?.condition && weather.condition !== 'Unknown') ||
 		weather?.temp ||

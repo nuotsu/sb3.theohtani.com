@@ -1,6 +1,6 @@
 'use client'
 
-import { useGameContext } from '@/ui/game/store'
+import { useGameContext } from '@/ui/game/context'
 import HomeRun from './HomeRun'
 import Venue from '@/ui/game/Venue'
 import { cn } from '@/lib/utils'

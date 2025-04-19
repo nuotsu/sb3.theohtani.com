@@ -1,4 +1,4 @@
-import { useGameContext } from '@/ui/game/store'
+import { useGameContext } from '@/ui/game/context'
 import { useEffect, useRef } from 'react'
 import { fetchPlayer } from '@/lib/fetch'
 import PlayerContainer from './PlayerContainer'

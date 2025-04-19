@@ -1,8 +1,7 @@
 'use client'
 
-import { GameProvider, useGameContext } from './store'
+import { GameProvider, useGameContext } from './context'
 import { fetchMLBLive } from '@/lib/fetch'
-import getGameStatus from '@/lib/game-status'
 import Loading from '@/ui/Loading'
 import NoSpoilerCheckboxes from '@/ui/spoiler/NoSpoilerCheckbox'
 import DiamondScore from './DiamondScore'
@@ -16,8 +15,7 @@ import Venue from './Venue'
 import { cn } from '@/lib/utils'
 
 function GameComponent() {
-	const { hasNoSpoiler } = useGameContext()
-	const { isPreview, isLive, isFinal } = getGameStatus()
+	const { isPreview, isLive, isFinal, hasNoSpoiler } = useGameContext()
 
 	return (
 		<article

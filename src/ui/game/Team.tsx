@@ -1,5 +1,4 @@
-import { useGameContext } from './store'
-import getGameStatus from '@/lib/game-status'
+import { useGameContext } from './context'
 import Loading from '@/ui/Loading'
 import TeamColor from '@/ui/team/TeamColor'
 import TeamLogo from '@/ui/team/TeamLogo'
@@ -7,8 +6,7 @@ import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function Team({ side }: { side: 'away' | 'home' }) {
-	const { data, hasNoSpoiler } = useGameContext()
-	const { isPreview, isLive } = getGameStatus()
+	const { data, isPreview, isLive, hasNoSpoiler } = useGameContext()
 
 	const team = data?.gameData.teams[side]
 

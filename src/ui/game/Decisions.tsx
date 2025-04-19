@@ -1,6 +1,6 @@
 'use client'
 
-import { useGameContext } from './store'
+import { useGameContext } from './context'
 import { useStorage } from '@/lib/store'
 import { fetchPlayer, getStats } from '@/lib/fetch'
 import PlayerContainer from './matchup/PlayerContainer'

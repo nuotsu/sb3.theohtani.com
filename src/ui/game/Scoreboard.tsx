@@ -1,5 +1,4 @@
-import { useGameContext } from './store'
-import getGameStatus from '@/lib/game-status'
+import { useGameContext } from './context'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
@@ -33,7 +32,7 @@ export default function Scoreboard() {
 }
 
 function Row({ side }: { side: 'away' | 'home' }) {
-	const { data } = useGameContext()
+	const { data, isFinal, isLive, isCancelled } = useGameContext()
 
 	const {
 		innings = [],
@@ -41,7 +40,7 @@ function Row({ side }: { side: 'away' | 'home' }) {
 		currentInning,
 		teams,
 	} = data?.liveData.linescore ?? {}
-	const { isFinal, isLive, isCancelled } = getGameStatus()
+
 	const isOffense =
 		isLive &&
 		((inningState === 'Top' && side === 'away') ||

@@ -1,4 +1,4 @@
-import { useGameContext } from './store'
+import { useGameContext } from './context'
 import { cn } from '@/lib/utils'
 
 export default function BSO({ className }: React.ComponentProps<'div'>) {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useLocalStorage } from '@/lib/store'
-import { useGameContext } from '@/ui/game/store'
+import { useGameContext } from '@/ui/game/context'
 
 export default function NoSpoilerCheckboxes() {
 	const { game } = useGameContext()

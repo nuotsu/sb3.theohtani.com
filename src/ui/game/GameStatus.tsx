@@ -1,10 +1,9 @@
-import { useGameContext } from './store'
-import getGameStatus from '@/lib/game-status'
+import { useGameContext } from './context'
 import { VscCircleSlash } from 'react-icons/vsc'
 
 export default function GameStatus() {
-	const { game, hasNoSpoiler } = useGameContext()
-	const { isPreview, isFinal, isCancelled } = getGameStatus()
+	const { game, isPreview, isFinal, isCancelled, hasNoSpoiler } =
+		useGameContext()
 
 	const { reason, detailedState } = game.status
 

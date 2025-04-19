@@ -1,4 +1,4 @@
-import { useGameContext } from './store'
+import { useGameContext } from './context'
 import { VscTriangleUp } from 'react-icons/vsc'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'

@@ -1,4 +1,4 @@
-import { useGameContext } from '@/ui/game/store'
+import { useGameContext } from '@/ui/game/context'
 import { fetchPlayer } from '@/lib/fetch'
 import PlayerContainer from './PlayerContainer'
 import PitchingStats, { getPitchingStats } from './PitchingStats'

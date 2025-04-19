@@ -1,10 +1,6 @@
-import { useGameContext } from '@/ui/game/store'
+import { useGameContext } from '@/ui/game/context'
 
-export default function getGameStatus(overrideStatus?: MLB.GameStatus) {
-	const { game } = useGameContext()
-
-	const status = overrideStatus ?? game.status
-
+export default function getGameStatus(status?: MLB.GameStatus) {
 	if (!status?.codedGameState) return {}
 
 	const { codedGameState } = status

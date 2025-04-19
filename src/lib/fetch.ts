@@ -32,9 +32,12 @@ export function fetchPlayer(
 			.join(''),
 	)
 
-	const person = data?.people[0]
+	if (rest.isLoading || !data) return { data: null, isLoading: false }
 
-	return { data: person, ...rest }
+	return {
+		data: data?.people[0],
+		...rest,
+	}
 }
 
 export function getStats(

@@ -19,6 +19,8 @@
 	}
 }
 
+@variant no-spoiler (.group\/game:has([name='no-spoiler']:checked) &);
+
 @layer base {
 	* {
 		min-width: 0;

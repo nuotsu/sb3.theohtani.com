@@ -1,3 +1,5 @@
+import Flip from '@/ui/Flip'
+
 export function getPitchingStats(
 	player?: MLB.Player | null,
 	data?: MLB.LiveData | null,
@@ -30,11 +32,21 @@ export default function PitchingStats({
 					<th>K</th>
 				</tr>
 				<tr className="tabular-nums *:px-[.5ch]">
-					<td>{parseFloat(stats.inningsPitched)}</td>
-					<td>{stats.hits}</td>
-					<td>{stats.earnedRuns}</td>
-					<td>{stats.baseOnBalls}</td>
-					<td>{stats.strikeOuts}</td>
+					<td>
+						<Flip>{parseFloat(stats.inningsPitched)}</Flip>
+					</td>
+					<td>
+						<Flip>{stats.hits}</Flip>
+					</td>
+					<td>
+						<Flip>{stats.earnedRuns}</Flip>
+					</td>
+					<td>
+						<Flip>{stats.baseOnBalls}</Flip>
+					</td>
+					<td>
+						<Flip>{stats.strikeOuts}</Flip>
+					</td>
 				</tr>
 			</tbody>
 		</table>

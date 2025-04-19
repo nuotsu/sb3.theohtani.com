@@ -1,5 +1,6 @@
-import getGameStatus from '@/lib/game-status'
 import { useGameContext } from './store'
+import getGameStatus from '@/lib/game-status'
+import checkHasNoSpoiler from '@/lib/no-spoiler'
 import { cn } from '@/lib/utils'
 
 const runnerKeys: Record<string, number> = {
@@ -11,16 +12,17 @@ const runnerKeys: Record<string, number> = {
 export default function BaseRunners({
 	className,
 }: React.ComponentProps<'div'>) {
-	const { game, data } = useGameContext()
+	const { data } = useGameContext()
+	const { isPreview, isLive, isFinal } = getGameStatus()
+	const hasNoSpoiler = checkHasNoSpoiler()
+
 	const { offense = {}, inningState } = data?.liveData.linescore ?? {}
+
+	const interlude = ['Middle', 'End'].includes(inningState ?? '')
 
 	const runners = Object.keys(offense)
 		.map((key) => runnerKeys[key])
 		.filter(Number.isInteger)
-
-	const interlude = ['Middle', 'End'].includes(inningState ?? '')
-
-	const { isPreview, isLive, isFinal } = getGameStatus(game.status)
 
 	return (
 		<div
@@ -43,9 +45,11 @@ export default function BaseRunners({
 							i === 1 && 'order-1',
 							i === 2 && 'order-3',
 							{
-								'bg-current text-yellow-400': isLive && runners.includes(i),
-								'text-current/50': isLive && !runners.includes(i),
-								'text-subdued': interlude || isPreview || isFinal,
+								'bg-current text-yellow-400':
+									isLive && !hasNoSpoiler && runners.includes(i),
+								'text-current/50':
+									isLive && hasNoSpoiler && !runners.includes(i),
+								'text-subdued': interlude || !isLive || hasNoSpoiler,
 							},
 						)}
 						title={`${runner?.fullName} on ${base}`}

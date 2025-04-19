@@ -1,5 +1,6 @@
 import { useGameContext } from './store'
 import getGameStatus from '@/lib/game-status'
+import checkHasNoSpoiler from '@/lib/no-spoiler'
 import BaseRunners from './BaseRunners'
 import CurrentInning from './CurrentInning'
 import GameStatus from './GameStatus'
@@ -10,7 +11,8 @@ export default function DiamondScore({
 	className,
 }: React.ComponentProps<'header'>) {
 	const { game } = useGameContext()
-	const { isLive } = getGameStatus(game.status)
+	const { isLive } = getGameStatus()
+	const hasNoSpoiler = checkHasNoSpoiler()
 
 	return (
 		<header
@@ -26,9 +28,11 @@ export default function DiamondScore({
 			<div className="relative z-1 col-[1/2] row-[2/-1] grid w-12 grid-rows-2 pr-1 pl-2">
 				<BaseRunners className="col-span-full row-span-full m-auto" />
 
-				{isLive && <CurrentInning className="relative col-span-full" />}
+				{isLive && !hasNoSpoiler && (
+					<CurrentInning className="relative col-span-full" />
+				)}
 
-				{!isLive && <GameStatus />}
+				{(!isLive || hasNoSpoiler) && <GameStatus />}
 			</div>
 
 			<Team side="away" />

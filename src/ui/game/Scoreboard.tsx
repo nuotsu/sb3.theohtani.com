@@ -41,7 +41,7 @@ function Row({ side }: { side: 'away' | 'home' }) {
 		currentInning,
 		teams,
 	} = data?.liveData.linescore ?? {}
-	const { isFinal, isLive } = getGameStatus(data?.gameData.status)
+	const { isFinal, isLive, isCancelled } = getGameStatus()
 	const isOffense =
 		isLive &&
 		((inningState === 'Top' && side === 'away') ||
@@ -51,15 +51,17 @@ function Row({ side }: { side: 'away' | 'home' }) {
 		<tr>
 			{Array.from({ length: Math.max(innings.length, 9) }).map((_, i) => {
 				const { runs } = innings[i]?.[side] ?? {}
-				const calledEarly = isFinal && side === 'home' && i >= 8 && isNaN(runs)
 				const current = currentInning
 					? currentInning - 1 === i && isOffense
 					: false
 
+				const calledEarly =
+					!isCancelled && isFinal && side === 'home' && i >= 8 && isNaN(runs)
+
 				return (
 					<td
 						className={cn(
-							'border-subdued/50 transition-colors data-[third]:border-l',
+							'border-subdued/50 h-lh transition-colors data-[third]:border-l',
 							runs > 0 ? 'font-bold' : 'text-fg/50',
 							current && 'bg-subdued/50',
 						)}

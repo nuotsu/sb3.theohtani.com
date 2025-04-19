@@ -1,6 +1,7 @@
 import NavItem from './NavItem'
-import SportSelector from '@/ui/sport/SportSelector'
 import Standings from '@/ui/standings/Standings'
+import SportSelector from '@/ui/sport/SportSelector'
+import SpoilerPrevention from '@/ui/spoiler/SpoilerPrevention'
 import { cn } from '@/lib/utils'
 
 export default function Nav() {
@@ -17,8 +18,9 @@ export default function Nav() {
 				triggerClassName={buttonClassName}
 				className="mx-auto max-w-max"
 			>
-				<div className="m-auto max-w-max">
+				<div className="gap-lh p-lh m-auto flex max-w-max flex-col items-center">
 					<SportSelector />
+					<SpoilerPrevention />
 				</div>
 			</NavItem>
 		</nav>

@@ -7,15 +7,15 @@ import { cn } from '@/lib/utils'
 
 export default function Details() {
 	const { data } = useGameContext()
-	const currentPlay = data?.liveData?.plays.currentPlay.result.description
 
-	const scoring = ['homers', 'scores'].some((type) =>
-		currentPlay?.includes(type),
-	)
+	const { currentPlay, scoringPlays } = data?.liveData?.plays ?? {}
+	const { description } = currentPlay?.result ?? {}
+
+	const scoring = currentPlay && scoringPlays?.includes(currentPlay.atBatIndex)
 
 	return (
 		<div className={cn('relative flex h-[2lh] flex-col items-stretch')}>
-			{currentPlay && (
+			{description && (
 				// @ts-ignore
 				<marquee
 					className={cn(
@@ -23,17 +23,17 @@ export default function Details() {
 						scoring && 'text-yellow-400',
 					)}
 					data-scoring={scoring || undefined}
-					title={currentPlay}
-					children={currentPlay}
+					title={description}
+					children={description}
 				/>
 			)}
 
-			{currentPlay?.includes('homers') && <HomeRun currentPlay={currentPlay} />}
+			{description?.includes('homers') && <HomeRun currentPlay={description} />}
 
 			<Venue
 				className={cn(
-					'absolute inset-x-0 top-0 -z-1 p-[.5ch] transition-opacity',
-					currentPlay && 'opacity-0',
+					'absolute inset-x-0 top-0 -z-1 p-[.5ch] text-sm transition-opacity',
+					description && 'opacity-0',
 				)}
 			/>
 		</div>

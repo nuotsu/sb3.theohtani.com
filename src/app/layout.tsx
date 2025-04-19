@@ -12,8 +12,8 @@ const f2 = Doto({
 })
 
 export const metadata: Metadata = {
-	title: 'MLB Scorebug',
-	description: 'Live MLB Scorebug',
+	title: 'Live Scorebug',
+	description: 'Live Scorebug',
 	icons: [
 		{
 			url: '/icon-48.png',

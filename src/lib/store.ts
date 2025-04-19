@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 const TODAY = new Date().toLocaleDateString('en-CA')
 
@@ -17,3 +18,26 @@ export const useStorage = create<{
 	setDate: (date) => set({ date }),
 	today: TODAY,
 }))
+
+export const useLocalStorage = create<{
+	noSpoilers: number[]
+	addNoSpoiler: (teamId: number) => void
+	removeNoSpoiler: (teamId: number) => void
+}>()(
+	persist(
+		(set) => ({
+			noSpoilers: [],
+			addNoSpoiler: (teamId) =>
+				set((state) => ({
+					noSpoilers: [...new Set([...state.noSpoilers, teamId])],
+				})),
+			removeNoSpoiler: (teamId) =>
+				set((state) => ({
+					noSpoilers: state.noSpoilers.filter((t) => t !== teamId),
+				})),
+		}),
+		{
+			name: 'sb3-local-storage',
+		},
+	),
+)

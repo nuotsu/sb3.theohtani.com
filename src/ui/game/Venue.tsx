@@ -19,28 +19,28 @@ export default function Venue(props: React.ComponentProps<'div'>) {
 		<div {...props}>
 			<p
 				className={cn(
-					'gap-x-ch grid text-center text-xs/tight text-balance text-current/50',
+					'gap-x-ch grid text-center text-balance text-current/50',
 					hasWeather && 'grid-cols-3',
 					interlude && 'text-subdued',
 				)}
 			>
-				<span
+				<small
 					className={cn(
 						'line-clamp-2',
 						isPreview && !hasWeather ? 'text-right' : 'text-left',
 					)}
 				>
 					{venue?.name}
-				</span>
+				</small>
 
 				{hasWeather && (
 					<>
-						<span>
+						<small>
 							{[weather.condition, `${weather.temp}°F`]
 								.filter(Boolean)
 								.join(' / ')}
-						</span>
-						<span className="text-right">{weather.wind}</span>
+						</small>
+						<small className="text-right">{weather.wind}</small>
 					</>
 				)}
 			</p>

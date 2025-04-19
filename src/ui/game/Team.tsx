@@ -1,16 +1,19 @@
 import { useGameContext } from './store'
-import Loading from '@/ui/Loading'
 import getGameStatus from '@/lib/game-status'
+import checkHasNoSpoiler from '@/lib/no-spoiler'
+import Loading from '@/ui/Loading'
 import TeamColor from '@/ui/team/TeamColor'
 import TeamLogo from '@/ui/team/TeamLogo'
 import Flip from '@/ui/Flip'
 import { cn } from '@/lib/utils'
 
 export default function Team({ side }: { side: 'away' | 'home' }) {
-	const { game, data } = useGameContext()
+	const { data } = useGameContext()
+	const { isPreview, isLive } = getGameStatus()
+	const hasNoSpoiler = checkHasNoSpoiler()
+
 	const team = data?.gameData.teams[side]
 	const { inningState } = data?.liveData.linescore ?? {}
-	const { isPreview, isLive } = getGameStatus(game.status)
 
 	const isOffense =
 		isLive &&
@@ -22,12 +25,13 @@ export default function Team({ side }: { side: 'away' | 'home' }) {
 			team={team}
 			className={cn(
 				'relative flex items-center gap-x-[.5ch] overflow-hidden px-[.5ch]',
-				isOffense && '',
-				isPreview ? 'row-span-2' : 'col-span-2',
+				isPreview || hasNoSpoiler ? 'row-span-2' : 'col-span-2',
 			)}
 			key={team?.id}
 		>
-			{team ? (
+			{!team ? (
+				<Loading />
+			) : (
 				<>
 					<TeamLogo
 						className="size-lh object-cover"
@@ -43,7 +47,7 @@ export default function Team({ side }: { side: 'away' | 'home' }) {
 						</abbr>
 
 						{team?.record && (
-							<small className="text-current/50">
+							<small className="no-spoiler:hidden text-current/50">
 								{team?.record.wins}-{team?.record.losses}
 							</small>
 						)}
@@ -51,15 +55,13 @@ export default function Team({ side }: { side: 'away' | 'home' }) {
 
 					{!isPreview && (
 						<Flip
-							className="text-right font-black tabular-nums"
+							className="no-spoiler:hidden text-right font-black tabular-nums"
 							disable={!isLive}
 						>
 							{data?.liveData.linescore.teams[side].runs}
 						</Flip>
 					)}
 				</>
-			) : (
-				<Loading />
 			)}
 		</TeamColor>
 	)

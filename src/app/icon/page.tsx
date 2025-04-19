@@ -4,7 +4,7 @@ import BaseRunners from '@/ui/game/BaseRunners'
 export default function Page() {
 	return (
 		<main className="gap-lh flex min-h-svh flex-wrap place-content-center bg-neutral-400">
-			<Icon className="rounded-none px-16 pt-20">
+			<Icon className="rounded-none px-16 pt-26">
 				<div className="gap-lh grid w-full rotate-45 grid-cols-2">
 					{Array.from({ length: 3 }).map((_, i) => (
 						<div

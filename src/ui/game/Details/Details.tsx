@@ -9,7 +9,7 @@ export default function Details() {
 	const { data } = useGameContext()
 
 	const { currentPlay, scoringPlays } = data?.liveData?.plays ?? {}
-	const { description } = currentPlay?.result ?? {}
+	const { description, eventType } = currentPlay?.result ?? {}
 
 	const scoring = currentPlay && scoringPlays?.includes(currentPlay.atBatIndex)
 
@@ -28,7 +28,7 @@ export default function Details() {
 				/>
 			)}
 
-			{description?.includes('homers') && <HomeRun currentPlay={currentPlay} />}
+			{eventType === 'home_run' && <HomeRun currentPlay={currentPlay} />}
 
 			<Venue
 				className={cn(

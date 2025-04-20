@@ -6,10 +6,10 @@ export default function HomeRun({
 	const { result } = currentPlay ?? {}
 
 	const text = {
-		0: 'Solo Home Run',
-		1: '2-Run Home Run',
-		2: '3-Run Home Run',
-		3: 'Grand Slam',
+		1: 'Solo Home Run',
+		2: '2-Run Home Run',
+		3: '3-Run Home Run',
+		4: 'Grand Slam',
 	}[result?.rbi ?? 0]
 
 	return (

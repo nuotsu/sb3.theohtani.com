@@ -40,7 +40,7 @@ export default function UpNext() {
 			ref={ref}
 			className={cn(
 				'no-scrollbar border-subdued/50 grid snap-x snap-mandatory auto-cols-[100%] [grid-auto-flow:column] overflow-x-auto border-b [--offset:4ch]!',
-				'[&>*:not(:last-child):hover+*_img]:-translate-x-lh [&>*:not(:last-child):hover+*]:pointer-events-none',
+				'[&>*:not(:last-child):hover+*_figure]:-translate-x-lh [&>*:not(:last-child):hover+*]:pointer-events-none',
 			)}
 		>
 			<PlayerContainer
@@ -85,7 +85,9 @@ export function NextBatter({
 			title={player?.fullName}
 			key={player.id}
 		>
-			<Headshot player={player} className="h-lh transition-transform" />
+			<figure className="blur-gradient-to-l transition-transform">
+				<Headshot player={player} className="h-lh" />
+			</figure>
 			<span>{player?.lastName}</span>
 			<small className="text-current/50">{label}</small>
 		</div>

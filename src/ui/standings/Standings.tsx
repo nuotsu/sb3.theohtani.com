@@ -31,7 +31,7 @@ export default function Standings() {
 			<h2 className="font-dot text-center">Standings</h2>
 
 			<div
-				className={cn('gap-ch grid', {
+				className={cn('gap-ch grid has-[td[colspan]]:[&_[data-rank]]:hidden', {
 					'md:grid-cols-2': data.records.length >= 2,
 					'md:grid-cols-3':
 						data.records.length > 4 && data.records.length !== 5,

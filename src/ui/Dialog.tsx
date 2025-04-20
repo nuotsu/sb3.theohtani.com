@@ -34,7 +34,7 @@ export default function Dialog({
 
 					<div
 						className={cn(
-							'relative my-auto w-screen pb-[calc(1lh+var(--pb))]',
+							'relative my-auto w-screen pb-[calc(1lh+1ch+var(--pb))]',
 							className,
 						)}
 					>

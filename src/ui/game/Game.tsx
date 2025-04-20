@@ -8,6 +8,7 @@ import DiamondScore from './DiamondScore'
 import Scoreboard from './Scoreboard'
 import BSO from './BSO'
 import Matchup from './matchup/Matchup'
+import PitchSequence from './pitch/PitchSequence'
 import Details from './Details/Details'
 import ProbablePitchers from './ProbablePitchers'
 import Decisions from './Decisions'
@@ -20,7 +21,7 @@ function GameComponent() {
 	return (
 		<article
 			className={cn(
-				'anim-fade group/game @container isolate grid grid-cols-2',
+				'anim-fade group/game @container isolate grid grid-cols-2 overflow-hidden',
 				isFinal && 'grid-rows-[auto_auto_1fr]',
 			)}
 		>
@@ -33,14 +34,18 @@ function GameComponent() {
 			{!isPreview && !hasNoSpoiler && <Scoreboard />}
 
 			{isLive && !hasNoSpoiler && (
-				<div className="relative z-1 col-span-full grid grid-cols-[auto_1fr_50%] @max-lg:grid-cols-[auto_1fr] @max-lg:grid-rows-[auto_auto]">
-					<div className="row-span-full grid w-12">
-						<BSO className="mx-auto" />
+				<>
+					<div className="relative z-1 col-span-full grid grid-cols-[auto_1fr_50%] @max-lg:grid-cols-[auto_1fr] @max-lg:grid-rows-[auto_auto]">
+						<div className="row-span-full grid w-12">
+							<BSO className="mx-auto" />
+						</div>
+
+						<Matchup className="grow" />
+						<Details />
 					</div>
 
-					<Matchup className="grow" />
-					<Details />
-				</div>
+					<PitchSequence />
+				</>
 			)}
 
 			{(isPreview || hasNoSpoiler) && (

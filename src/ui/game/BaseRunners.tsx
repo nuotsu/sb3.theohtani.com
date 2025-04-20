@@ -38,11 +38,10 @@ export default function BaseRunners({
 							i === 0 && 'order-2',
 							i === 1 && 'order-1',
 							i === 2 && 'order-3',
-							{
-								'bg-current text-yellow-400':
-									isLive && !hasNoSpoiler && runners.includes(i),
-								'text-subdued': isInterlude || !isLive || hasNoSpoiler,
-							},
+							isLive && !hasNoSpoiler && runners.includes(i)
+								? 'bg-current text-yellow-400'
+								: 'text-current/50',
+							(isInterlude || !isLive || hasNoSpoiler) && 'text-subdued',
 						)}
 						title={`${runner?.fullName} on ${base}`}
 						key={i}

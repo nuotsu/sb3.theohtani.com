@@ -37,7 +37,7 @@ export default function Team({ side }: { side: 'away' | 'home' }) {
 						</abbr>
 
 						{team?.record && (
-							<small className="no-spoiler:hidden text-current/50">
+							<small className="no-spoiler:hidden whitespace-nowrap text-current/50">
 								{team?.record.wins}-{team?.record.losses}
 							</small>
 						)}

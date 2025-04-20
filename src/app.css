@@ -130,6 +130,14 @@
 	}
 }
 
+@utility blur-gradient-to-l {
+	@apply blur-gradient bg-linear-to-l;
+
+	&::before {
+		@apply -left-4 mask-l-from-25% mask-l-to-100%;
+	}
+}
+
 @utility no-scrollbar {
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: none;

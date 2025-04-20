@@ -26,17 +26,17 @@ export function fetchPlayer(
 ) {
 	if (!player) return { data: null, isLoading: false }
 
-	const { data, ...rest } = fetchMLBLive<{ people: MLB.Player[] }>(
+	const { data, isLoading } = fetchMLBLive<{ people: MLB.Player[] }>(
 		[player.link, group && `?hydrate=stats(group=[${group}],type=[yearByYear])`]
 			.filter(Boolean)
 			.join(''),
 	)
 
-	if (rest.isLoading || !data) return { data: null, isLoading: false }
+	if (isLoading || !data) return { data: null, isLoading: false }
 
 	return {
 		data: data?.people[0],
-		...rest,
+		isLoading,
 	}
 }
 

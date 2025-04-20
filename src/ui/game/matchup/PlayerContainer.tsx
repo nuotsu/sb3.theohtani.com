@@ -1,21 +1,25 @@
 import Headshot from '@/ui/Headshot'
 import { cn } from '@/lib/utils'
 
-export default function PlayerContainer({
+export default function PlayerContainer<T extends React.ElementType = 'div'>({
+	as = 'div' as T,
 	player,
 	className,
 	children,
 	subText: subText,
 }: {
+	as?: T
 	player?: MLB.Player | null
 	subText?: React.ReactNode
-} & React.ComponentProps<'div'>) {
+} & Omit<React.ComponentProps<T>, 'as' | 'player'>) {
 	if (!player) return null
 
+	const Tag = as as React.ElementType
+
 	return (
-		<div
+		<Tag
 			className={cn(
-				'h-lh anim-fade relative flex gap-x-[.5ch] overflow-hidden px-[.5ch]',
+				'h-lh anim-fade flex gap-x-[.5ch] overflow-hidden px-[.5ch]',
 				className,
 			)}
 		>
@@ -31,7 +35,7 @@ export default function PlayerContainer({
 				<span className="line-clamp-1 break-all">{player?.lastName}</span>
 
 				{subText && (
-					<small className="line-clamp-1 text-current/50 tabular-nums @max-sm:hidden sm:@max-[12rem]:hidden">
+					<small className="line-clamp-1 text-current/50 tabular-nums lg:max-xl:hidden [@media(width>=30rem)]:max-sm:hidden">
 						{subText}
 					</small>
 				)}
@@ -40,6 +44,6 @@ export default function PlayerContainer({
 			{children && (
 				<div className="flex items-center gap-x-[inherit]">{children}</div>
 			)}
-		</div>
+		</Tag>
 	)
 }

@@ -524,11 +524,7 @@ declare global {
 				hasOut: boolean
 				captivatingIndex: number
 			}
-			count: {
-				balls: number
-				strikes: number
-				outs: number
-			}
+			count: PlayCount
 			matchup: {}
 			pitchIndex: number[]
 			actionIndex: number[]
@@ -740,6 +736,70 @@ declare global {
 			homeScore: number
 			isScoringPlay: boolean
 			hasReview: boolean
+		}
+
+		interface LivePlayPitch {
+			details: {
+				call: {
+					code: string
+					description: string
+				}
+				description: string
+				code: string
+				ballColor: string
+				trailColor: string
+				isInPlay: boolean
+				isStrike: boolean
+				isBall: boolean
+				type?: {
+					code: string
+					description: string
+				}
+				isOut: boolean
+				hasReview: boolean
+			}
+			count: PlayCount
+			pitchData: Partial<{
+				startSpeed: number
+				endSpeed: number
+				strikeZoneTop: number
+				strikeZoneBottom: number
+				coordinates: {
+					aY: number
+					aZ: number
+					pfxX: number
+					pfxZ: number
+					pX: number
+					pZ: number
+					vX0: number
+					vY0: number
+					vZ0: number
+					x: number
+					y: number
+					x0: number
+					y0: number
+					z0: number
+					aX: number
+				}
+				breaks: {
+					breakAngle: number
+					breakVertical: number
+					breakVerticalInduced: number
+					breakHorizontal: number
+					spinRate: number
+					spinDirection: number
+				}
+				zone: number
+				plateTime: number
+				extension: number
+			}>
+			index: number
+			playId: string
+			pitchNumber: number
+			startTime: string
+			endTime: string
+			isPitch: true
+			type: string
 		}
 
 		interface LivePlaysInning {

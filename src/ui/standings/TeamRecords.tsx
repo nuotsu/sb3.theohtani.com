@@ -1,6 +1,6 @@
-import TeamColor from '@/ui/team/TeamColor'
-import TeamLogo from '@/ui/team/TeamLogo'
-import { fetchMLBLive } from '@/lib/fetch'
+import { useMemo } from 'react'
+import { useLocalStorage } from '@/lib/store'
+import TeamRecord from './TeamRecord'
 import { cn } from '@/lib/utils'
 
 export default function TeamRecords({
@@ -10,7 +10,19 @@ export default function TeamRecords({
 	heading?: string
 	teamRecords: MLB.StandingsTeamRecord[]
 }) {
+	const { noSpoilers } = useLocalStorage()
+
 	if (!teamRecords.length) return null
+
+	const records = useMemo(
+		() =>
+			structuredClone(teamRecords).sort((a, b) => {
+				if (noSpoilers.includes(a.team.id)) return 1
+				if (noSpoilers.includes(b.team.id)) return -1
+				return 0
+			}),
+		[noSpoilers],
+	)
 
 	return (
 		<table className="w-full text-center tabular-nums">
@@ -26,6 +38,7 @@ export default function TeamRecords({
 								'text-current/25',
 								label === 'W-L' && 'min-w-[6ch]',
 							)}
+							data-rank={label === 'Rank' || undefined}
 							key={label}
 						>
 							<small>{label}</small>
@@ -35,72 +48,10 @@ export default function TeamRecords({
 			</thead>
 
 			<tbody>
-				{teamRecords.map((teamRecord) => (
-					<tr className="*:px-[.5ch]" key={teamRecord.team.id}>
-						<Team teamRecord={teamRecord} />
-
-						<td className="whitespace-nowrap">
-							{teamRecord.wins}-{teamRecord.losses}
-						</td>
-
-						<td
-							className={cn({
-								'text-green-200':
-									parseFloat(teamRecord.winningPercentage) > 0.5,
-								'text-red-200': parseFloat(teamRecord.winningPercentage) < 0.5,
-							})}
-						>
-							{teamRecord.winningPercentage}
-						</td>
-
-						<td>{teamRecord.divisionGamesBack}</td>
-
-						<td
-							className={cn({
-								'text-green-200': teamRecord.streak?.streakType === 'wins',
-								'text-red-200': teamRecord.streak?.streakType === 'losses',
-							})}
-						>
-							{teamRecord.streak?.streakCode}
-						</td>
-
-						<td>{teamRecord.leagueRank}</td>
-					</tr>
+				{records.map((teamRecord) => (
+					<TeamRecord teamRecord={teamRecord} key={teamRecord.team.id} />
 				))}
 			</tbody>
 		</table>
-	)
-}
-
-function Team({ teamRecord }: { teamRecord: MLB.StandingsTeamRecord }) {
-	const { data } = fetchMLBLive<{ teams: MLB.Team[] }>(teamRecord.team.link)
-	const [team] = data?.teams ?? []
-
-	return (
-		<TeamColor
-			as="th"
-			team={teamRecord.team as MLB.Team}
-			className="pr-0! text-left"
-		>
-			<div className="flex items-center gap-x-[.5ch] *:line-clamp-1">
-				<span className="leading-none @max-lg:hidden">
-					{teamRecord.team.name}
-				</span>
-
-				<span className="leading-none @max-sm:hidden @lg:hidden">
-					{team?.clubName}
-				</span>
-
-				<abbr className="leading-none @sm:hidden" title={teamRecord.team.name}>
-					{team?.abbreviation}
-				</abbr>
-
-				<TeamLogo
-					className="h-lh ml-auto inline-block shrink-0"
-					team={team}
-					draggable={false}
-				/>
-			</div>
-		</TeamColor>
 	)
 }

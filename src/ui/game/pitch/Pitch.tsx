@@ -1,5 +1,3 @@
-import { cn } from '@/lib/utils'
-
 export default function Pitch({ pitch }: { pitch?: MLB.LivePlayPitch }) {
 	const { details } = pitch ?? {}
 	const { startSpeed } = pitch?.pitchData ?? {}

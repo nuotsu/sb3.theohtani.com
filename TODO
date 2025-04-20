@@ -1,18 +1,6 @@
 # TODO
 
-## fixes
-
-## backlog
-
-- highlight -> star/favorite teams
 - K/backward-K alerts
 - gameData.flags
-- pitch sequences of an at-bat
 - player search; API endpoint?
 - YouTube game highlights API + keys
-
-## Logo
-
-- bases?
-- BSO?
-- favorited team?

@@ -36,14 +36,14 @@ export default function PitchSequence() {
 				'group-not-has-[[name="pitch-sequence"]:checked]/game:translate-x-full',
 			)}
 		>
-			<div ref={ref} className="max-h-full overflow-y-auto px-[.5ch]">
-				<div className="gap-ch blur-gradient-to-b h-lh sticky top-0 z-1 flex *:text-sm before:-bottom-2">
+			<div ref={ref} className="max-h-full overflow-y-auto">
+				<div className="gap-ch blur-gradient-to-b h-lh sticky top-0 z-1 flex px-[.5ch] *:text-sm before:-bottom-2">
 					<span className="line-clamp-1 grow">Pitch Sequence</span>
 
 					{gameStats && <NumberOfPitches value={gameStats.numberOfPitches} />}
 				</div>
 
-				<ol className="space-y-1">
+				<ol className="space-y-1 pr-[.5ch]">
 					{pitches?.map((pitch) => (
 						<Pitch pitch={pitch} key={pitch.pitchNumber} />
 					))}

@@ -14,10 +14,13 @@ export default function Nav() {
 			</NavItem>
 
 			<NavItem label="⚙️ Settings" triggerClassName={buttonClassName}>
-				<div className="gap-lh p-lh flex flex-col text-center">
-					<div>
-						<SportSelector />
-					</div>
+				<div className="gap-lh p-lh flex flex-col items-center text-center">
+					<SportSelector className="text-fg bg-transparent" />
+
+					<label className="flex items-center gap-[.5ch]">
+						<input id="show-top-performers" type="checkbox" />
+						Show top performers
+					</label>
 
 					<SpoilerProtection />
 				</div>

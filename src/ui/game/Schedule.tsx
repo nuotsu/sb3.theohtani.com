@@ -73,7 +73,7 @@ function Group({
 				</h2>
 			)}
 
-			<div className="gap-lh grid md:grid-cols-2">
+			<div className="gap-lh grid items-start md:grid-cols-2">
 				{games.map((game) => (
 					<Game game={game} key={game.gamePk} />
 				))}

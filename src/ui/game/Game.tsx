@@ -12,6 +12,7 @@ import PitchSequence from './pitch/PitchSequence'
 import Details from './Details/Details'
 import ProbablePitchers from './ProbablePitchers'
 import Decisions from './Decisions'
+import TopPerformers from './TopPerformers'
 import Venue from './Venue'
 import { cn } from '@/lib/utils'
 
@@ -58,6 +59,10 @@ function GameComponent() {
 
 			{(!isLive || hasNoSpoiler) && (
 				<Venue className="h-lh col-span-full ml-12 p-[.5ch] text-sm" />
+			)}
+
+			{!isPreview && !hasNoSpoiler && (
+				<TopPerformers className="col-span-full @md:ml-12" />
 			)}
 		</article>
 	)

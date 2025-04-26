@@ -17,7 +17,7 @@ export default function SpoilerProtection() {
 	const { games } = data.dates?.[0] ?? {}
 
 	return (
-		<fieldset className="space-y-ch">
+		<fieldset className="space-y-ch w-full">
 			<legend className="mx-auto">Spoiler Protection</legend>
 
 			<div className="gap-ch grid grid-cols-[repeat(auto-fill,minmax(14ch,1fr))]">

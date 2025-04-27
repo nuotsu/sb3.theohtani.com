@@ -21,7 +21,7 @@ export const useStorage = create<{
 	setDate: (date) => set({ date }),
 	today: TODAY,
 
-	sortStat: 'battingAverage',
+	sortStat: 'avg',
 	setSortStat: (sortStat) => set({ sortStat }),
 }))
 

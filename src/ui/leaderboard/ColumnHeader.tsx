@@ -6,17 +6,16 @@ import { cn } from '@/lib/utils'
 export default function ColumnHeader({
 	stat,
 	children,
-}: { stat?: string } & React.ComponentProps<'th'>) {
+}: {
+	stat?: keyof (MLB.BattingStats & MLB.PitchingStats)
+} & React.ComponentProps<'th'>) {
 	const { sortStat, setSortStat } = useStorage()
 
 	return (
-		<th>
+		<th className={cn('*:p-[.5ch]', sortStat === stat && 'bg-fg/5')}>
 			{stat ? (
 				<button
-					className={cn(
-						'hover:text-fg transition-colors',
-						stat === sortStat && 'text-fg',
-					)}
+					className="hover:text-fg w-full transition-colors"
 					onClick={() => setSortStat(stat)}
 				>
 					{children}

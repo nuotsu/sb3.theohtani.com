@@ -3,15 +3,12 @@ export default function LeaderboardTable({
 	children,
 }: { head: React.ReactNode } & React.ComponentProps<'tbody'>) {
 	return (
-		<table className="w-full table-fixed">
-			<thead className="sticky top-0 z-1">
-				<tr className="text-sm text-current/25 *:p-[.5ch] [&_th]:backdrop-blur">
-					<td></td>
-					{head}
-				</tr>
+		<table className="min-w-full table-fixed text-center whitespace-nowrap">
+			<thead className="bg-bg/50 sticky top-0 z-1 backdrop-blur">
+				<tr className="text-sm text-current/25">{head}</tr>
 			</thead>
 
-			<tbody className="text-center">{children}</tbody>
+			<tbody className="tabular-nums">{children}</tbody>
 		</table>
 	)
 }

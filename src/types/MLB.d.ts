@@ -98,6 +98,8 @@ declare global {
 
 		interface BasicPlayerData extends IdentifiableObject {
 			fullName: string
+			firstName?: string
+			lastName?: string
 		}
 
 		interface Player extends BasicPlayerData {

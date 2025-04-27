@@ -10,13 +10,19 @@ export const useStorage = create<{
 	date: string
 	setDate: (date: string) => void
 	today: string
-}>((set, get) => ({
+
+	sortStat: string
+	setSortStat: (sortStat: string) => void
+}>((set) => ({
 	sportId: 1,
 	setSportId: (sportId) => set({ sportId }),
 
 	date: TODAY,
 	setDate: (date) => set({ date }),
 	today: TODAY,
+
+	sortStat: 'battingAverage',
+	setSortStat: (sortStat) => set({ sortStat }),
 }))
 
 export const useLocalStorage = create<{

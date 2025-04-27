@@ -1,5 +1,5 @@
 import NavItem from './NavItem'
-import Leaderboard from '@/ui/stats/Leaderboard'
+import Leaderboard from '@/ui/leaderboard/Leaderboard'
 import Standings from '@/ui/standings/Standings'
 import SportSelector from '@/ui/sport/SportSelector'
 import SpoilerProtection from '@/ui/spoiler/SpoilerProtection'

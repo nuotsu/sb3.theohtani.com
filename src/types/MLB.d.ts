@@ -136,7 +136,7 @@ declare global {
 		}
 
 		interface PlayerStat extends Player {
-			stats?: MLB.StatEntry<MLB.PlayerStatSplit>[]
+			stats?: StatEntry<PlayerStatSplit>[]
 		}
 
 		interface PrimaryPosition {
@@ -657,7 +657,7 @@ declare global {
 		interface StatEntry<SplitType extends StatSplit<any>> {
 			type: DisplayNameObject
 			group: DisplayNameObject
-			exemptions: any[] // dunno
+			exemptions: any[]
 			splits: SplitType[]
 		}
 
@@ -1082,6 +1082,23 @@ declare global {
 			sortOrder: number
 			numPlayoffTeams: number
 			active: boolean
+		}
+
+		// leaderboard
+
+		interface Leaderboard extends RootResponse {
+			stats: LeaderboardStat[]
+		}
+
+		interface LeaderboardStat {
+			type: DisplayNameObject
+			group: DisplayNameObject
+			totalSplits: number
+			exemptions: any[]
+			splits: PlayerStatSplit[]
+			splitsTiedWithOffset: PlayerStatSplit[]
+			splitsTiedWithLimit: PlayerStatSplit[]
+			playerPool: string
 		}
 	}
 }

@@ -1,4 +1,5 @@
 import { Geist, Doto, Chakra_Petch } from 'next/font/google'
+import Nav from '@/ui/nav'
 import '@/app.css'
 import type { Metadata } from 'next'
 
@@ -41,7 +42,11 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="no-scrollbar">
 			<body className="bg-bg text-fg cursor-crosshair antialiased has-open:overflow-hidden">
-				{children}
+				<main className="flex min-h-svh flex-col">
+					{children}
+
+					<Nav />
+				</main>
 			</body>
 		</html>
 	)

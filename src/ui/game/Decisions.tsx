@@ -14,13 +14,17 @@ export default function Decisions({ className }: React.ComponentProps<'div'>) {
 	const { date } = useStorage()
 	const year = new Date(date).getFullYear()
 
-	const [{ data: winner, isLoading }, { data: save }, { data: loser }] = [
+	const [
+		{ data: winner, isLoading: isLoadingWinner },
+		{ data: save, isLoading: isLoadingSave },
+		{ data: loser, isLoading: isLoadingLoser },
+	] = [
 		fetchPlayer(decisions?.winner, 'pitching'),
 		fetchPlayer(decisions?.save, 'pitching'),
 		fetchPlayer(decisions?.loser, 'pitching'),
 	]
 
-	if (isLoading) return null
+	if (isLoadingWinner || isLoadingSave || isLoadingLoser) return null
 
 	const [winnerStats, saveStats, loserStats] = [
 		winner && (getStats(winner, year)?.stat as MLB.PitchingStats),

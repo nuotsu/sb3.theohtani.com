@@ -10,7 +10,7 @@ export const useStorage = create<{
 	date: string
 	setDate: (date: string) => void
 	today: string
-}>((set) => ({
+}>((set, get) => ({
 	sportId: 1,
 	setSportId: (sportId) => set({ sportId }),
 

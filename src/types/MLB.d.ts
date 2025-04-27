@@ -970,6 +970,8 @@ declare global {
 			sport: Sport
 			gameType: string
 			numTeams?: number // int
+			rank?: number
+			position?: PrimaryPosition
 		}
 
 		// standings

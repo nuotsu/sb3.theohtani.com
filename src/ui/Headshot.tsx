@@ -9,7 +9,7 @@ export default function Headshot({
 	...props
 }: {
 	type?: 'transparent' | 'colored'
-	player?: MLB.Player | null
+	player?: MLB.Player | MLB.BasicPlayerData | null
 	size?: number
 	zoom?: number
 } & React.ComponentProps<'img'>) {

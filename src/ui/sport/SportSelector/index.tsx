@@ -1,10 +1,10 @@
-import { fetchMLB } from '@/lib/fetch'
+import { fetcher } from '@/lib/fetch'
 import Select from './Select'
 
 export default async function SportSelector(
 	props: Omit<React.ComponentProps<'select'>, 'children'>,
 ) {
-	const { sports } = await fetchMLB<MLB.Sports>('/api/v1/sports')
+	const { sports } = await fetcher<MLB.Sports>('/api/v1/sports')
 
 	return (
 		<Select {...props}>

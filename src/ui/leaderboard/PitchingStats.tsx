@@ -96,7 +96,9 @@ function Stats({ stat }: { stat: MLB.PitchingStats }) {
 			<Stat value="completeGames" />
 			<Stat value="shutouts" />
 			<Stat colSpan={2}>
-				{stat.saves}/{stat.saveOpportunities}
+				{stat.saves}
+				<span className="text-current/25"> / </span>
+				{stat.saveOpportunities}
 			</Stat>
 			<Stat value="strikeOuts" bordered />
 			<Stat

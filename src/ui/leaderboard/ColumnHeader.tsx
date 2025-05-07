@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 export default function ColumnHeader({
 	stat,
 	disabled,
+	className,
 	children,
 }: {
 	stat?: keyof (MLB.BattingStats & MLB.PitchingStats)
@@ -14,7 +15,7 @@ export default function ColumnHeader({
 	const { sortStat, setSortStat } = useStorage()
 
 	return (
-		<th className={cn('*:p-[.5ch]', sortStat === stat && 'bg-fg/5')}>
+		<th className={cn('*:p-[.5ch]', sortStat === stat && 'bg-fg/5', className)}>
 			{stat ? (
 				<button
 					className="hover:text-fg w-full transition-colors"

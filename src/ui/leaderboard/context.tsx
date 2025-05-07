@@ -16,16 +16,7 @@ export function LeaderboardProvider({
 	value: Props
 	children: React.ReactNode
 }) {
-	const { data } = value
-
-	return (
-		<LeaderboardContext.Provider
-			value={{
-				data,
-			}}
-			children={children}
-		/>
-	)
+	return <LeaderboardContext.Provider value={value} children={children} />
 }
 
 export function useLeaderboardContext() {

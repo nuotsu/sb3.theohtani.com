@@ -13,12 +13,12 @@ export default function Team({ split }: { split: MLB.PlayerStatSplit }) {
 			team={split.team as MLB.Team}
 		>
 			<div className="flex items-center gap-[.5ch]">
-				<span className="w-[3ch] text-[x-small] group-[:not(:hover)]:text-current/50">
+				<span className="w-[3ch] shrink-0 text-[x-small] group-[:not(:hover)]:text-current/50">
 					{split.rank}
 				</span>
 
 				<Headshot
-					className="size-lh object-contain"
+					className="size-lh shrink-0 object-contain"
 					player={split.player}
 					size={48}
 				/>

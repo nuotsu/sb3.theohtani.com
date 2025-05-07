@@ -1,5 +1,6 @@
 import { useLeaderboardContext } from './context'
 import { useStorage } from '@/lib/store'
+import GroupSwitcher from './GroupSwitcher'
 import LeaderboardTable from './LeaderboardTable'
 import ColumnHeader from './ColumnHeader'
 import { cn } from '@/lib/utils'
@@ -7,7 +8,7 @@ import Team from './Team'
 
 export default function BattingStats() {
 	const { data } = useLeaderboardContext()
-	const { splits, group } = data?.stats?.[0] ?? {}
+	const { splits } = data?.stats?.[0] ?? {}
 
 	if (!splits) return null
 
@@ -15,7 +16,9 @@ export default function BattingStats() {
 		<LeaderboardTable
 			head={
 				<>
-					<td className="uppercase">{group?.displayName}</td>
+					<td className="uppercase">
+						<GroupSwitcher />
+					</td>
 					<ColumnHeader stat="avg">AVG</ColumnHeader>
 					<ColumnHeader stat="atBats">AB</ColumnHeader>
 					<ColumnHeader stat="hits">H</ColumnHeader>
@@ -53,7 +56,7 @@ function Stats({ stat }: { stat: MLB.BattingStats }) {
 		className,
 		children,
 	}: {
-		value: keyof MLB.BattingStats
+		value?: keyof MLB.BattingStats
 		bordered?: boolean
 	} & React.ComponentProps<'td'>) => (
 		<td
@@ -63,7 +66,7 @@ function Stats({ stat }: { stat: MLB.BattingStats }) {
 				className,
 			)}
 		>
-			{children || stat[value]}
+			{children || (value && stat[value])}
 		</td>
 	)
 
@@ -95,7 +98,6 @@ function Stats({ stat }: { stat: MLB.BattingStats }) {
 			<Stat value="strikeOuts" />
 			<Stat value="stolenBases" />
 			<Stat
-				value="stolenBasePercentage"
 				className={cn({
 					'text-green-200': parseFloat(stat.stolenBasePercentage) === 1,
 				})}

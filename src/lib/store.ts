@@ -3,6 +3,8 @@ import { persist } from 'zustand/middleware'
 
 const TODAY = new Date().toLocaleDateString('en-CA')
 
+export const GROUPS = ['hitting', 'pitching'] as const
+
 export const useStorage = create<{
 	sportId: number
 	setSportId: (sportId: number) => void
@@ -10,6 +12,9 @@ export const useStorage = create<{
 	date: string
 	setDate: (date: string) => void
 	today: string
+
+	group: (typeof GROUPS)[number]
+	setGroup: (group: (typeof GROUPS)[number]) => void
 
 	sortStat: string
 	setSortStat: (sortStat: string) => void
@@ -20,6 +25,9 @@ export const useStorage = create<{
 	date: TODAY,
 	setDate: (date) => set({ date }),
 	today: TODAY,
+
+	group: GROUPS[0],
+	setGroup: (group) => set({ group }),
 
 	sortStat: 'avg',
 	setSortStat: (sortStat) => set({ sortStat }),

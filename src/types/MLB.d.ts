@@ -332,6 +332,7 @@ declare global {
 			hits: number // int
 			hitByPitch: number // int
 			atBats: number // int
+			avg: string // 0-1 float as a string; can be ".---" if unavailable
 			obp: string // 0-1 float as a string; can be ".---" if unavailable
 			slg: string // 0-1 float as a string; can be ".---" if unavailable
 			ops: string // 0-1 float as a string; can be ".---" if unavailable

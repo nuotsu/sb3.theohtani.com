@@ -4,8 +4,6 @@ import TeamColor from '@/ui/team/TeamColor'
 import Headshot from '@/ui/Headshot'
 
 export default function Team({ split }: { split: MLB.PlayerStatSplit }) {
-	console.log(split)
-
 	return (
 		<TeamColor
 			as="th"

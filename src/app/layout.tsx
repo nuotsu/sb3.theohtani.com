@@ -1,5 +1,6 @@
 import { Geist, Doto, Chakra_Petch } from 'next/font/google'
 import Nav from '@/ui/nav'
+import { Analytics } from '@vercel/analytics/react'
 import '@/app.css'
 import type { Metadata } from 'next'
 
@@ -47,6 +48,7 @@ export default function RootLayout({
 
 					<Nav />
 				</main>
+				<Analytics />
 			</body>
 		</html>
 	)

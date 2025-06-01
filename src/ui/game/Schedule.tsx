@@ -60,7 +60,7 @@ function Group({
 	return (
 		<div className="[&+&]:mt-ch">
 			{label && (
-				<h2 className="blur-gradient-to-b sticky top-0 z-1">
+				<h2 className="blur-gradient-to-b pt-lh sticky top-(--header-height) z-1">
 					<small
 						className={cn(
 							'gap-ch flex font-bold text-current/25 uppercase',

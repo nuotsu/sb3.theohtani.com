@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 			type: 'image/png',
 		},
 		{
-			url: '/icon-192.png',
+			url: '/icon.png',
 			sizes: '192x192',
 			type: 'image/png',
 		},
